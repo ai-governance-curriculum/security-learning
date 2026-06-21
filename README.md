@@ -1,5 +1,9 @@
 # AI Infrastructure Security Engineer - Learning Repository
 
+<!-- aicg:site-banner -->
+> 🎓 Part of the **[AI Infrastructure Curriculum](https://ai-infra-curriculum.github.io/)** — a free, open-source ladder of role-based AI-infrastructure programs. [Explore the ladder](https://ai-infra-curriculum.github.io/) · [Join the first live cohort](https://ai-infra-curriculum.github.io/junior.html)
+<!-- /aicg:site-banner -->
+
 **Level**: 2.5C (Specialized Security Track from Senior Infrastructure Engineer)
 **Duration**: 680 hours (17 weeks full-time, 34 weeks part-time)
 **Prerequisites**: Senior AI Infrastructure Engineer completion, deep security knowledge
@@ -537,7 +541,6 @@ Questions? Join our [Discord](https://discord.gg/ai-infra-security) or email sec
 *Last Updated: October 2025*
 *Repository Version: 1.0.0*
 *Total Stars: ⭐ (Be the first!)*
-
 
 ---
 
