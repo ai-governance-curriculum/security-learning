@@ -78,7 +78,7 @@ produce reusable artifacts:
 
 For implementation depth on individual controls, the paired
 solutions repo
-[`ai-infra-security-solutions`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions)
+[`ai-infra-security-solutions`](https://github.com/ai-governance-curriculum/security-solutions)
 contains 5 project-level `SOLUTION.md` files (each with a
 production-gap checklist and cross-references into the engineer
 and mlops tracks).

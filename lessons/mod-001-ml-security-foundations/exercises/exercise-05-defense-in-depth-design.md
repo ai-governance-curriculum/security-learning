@@ -126,7 +126,7 @@ refer back to it.
 ## Solution comparison
 
 After writing your own, compare against the reference design in
-[`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-05/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).
+[`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-05/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).
 
 The reference design is one defensible answer for SmartRecs at
 its current scale. A defensible alternative might trade *more*

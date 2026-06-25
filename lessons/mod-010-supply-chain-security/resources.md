@@ -129,7 +129,7 @@
 
 ## Cross-references in this curriculum
 
-- [`ai-infra-security-solutions/projects/project-4-secure-cicd/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects/project-4-secure-cicd) — Reference secure CI/CD pipeline.
+- [`ai-infra-security-solutions/projects/project-4-secure-cicd/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects/project-4-secure-cicd) — Reference secure CI/CD pipeline.
 
 - [`ai-infra-engineer-solutions/modules/mod-103-containerization/exercise-10-sbom-and-supply-chain`](https://github.com/ai-infra-curriculum/ai-infra-engineer-solutions/tree/main/modules/mod-103-containerization/exercise-10-sbom-and-supply-chain) — SBOM + signing reference.
 

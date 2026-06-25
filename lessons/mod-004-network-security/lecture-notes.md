@@ -762,7 +762,7 @@ Anti-patterns:
 After this:
 
 1. Read the NetworkPolicy YAML in
-   [`ai-infra-security-solutions/projects/project-1-zero-trust/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects/project-1-zero-trust)
+   [`ai-infra-security-solutions/projects/project-1-zero-trust/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects/project-1-zero-trust)
    — it makes more sense now.
 2. Read [Cilium's documentation on NetworkPolicy](https://docs.cilium.io/en/stable/security/policy/).
 3. Skim the [Istio Authorization documentation](https://istio.io/latest/docs/concepts/security/#authorization).

@@ -104,9 +104,9 @@ specific evaluation.)
 
 ## Cross-references within this curriculum
 
-- [`ai-infra-security-solutions/projects/project-1-zero-trust/falco-rules/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects/project-1-zero-trust/falco-rules) — Reference Falco rules.
+- [`ai-infra-security-solutions/projects/project-1-zero-trust/falco-rules/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects/project-1-zero-trust/falco-rules) — Reference Falco rules.
 
-- [`ai-infra-security-solutions/projects/project-5-security-operations/sigma-rules/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects/project-5-security-operations/sigma-rules) — Higher-level detection patterns.
+- [`ai-infra-security-solutions/projects/project-5-security-operations/sigma-rules/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects/project-5-security-operations/sigma-rules) — Higher-level detection patterns.
 
 - [`ai-infra-engineer-solutions/modules/mod-104-kubernetes/`](https://github.com/ai-infra-curriculum/ai-infra-engineer-solutions/tree/main/modules/mod-104-kubernetes) — Pod security + multi-tenancy reference.
 

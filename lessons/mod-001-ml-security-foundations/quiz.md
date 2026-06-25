@@ -5,7 +5,7 @@
 > closed-book first.
 >
 > An answer key lives in the paired solutions repo at
-> [`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/quiz-answers.md`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/modules/mod-001-ml-security-foundations).
+> [`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/quiz-answers.md`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/modules/mod-001-ml-security-foundations).
 > (If the answer key isn't there yet, post the question you're
 > stuck on in Discussions.)
 

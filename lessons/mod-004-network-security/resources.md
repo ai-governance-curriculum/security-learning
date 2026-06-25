@@ -100,7 +100,7 @@
 
 - [`ai-infra-mlops-solutions/modules/09-security/exercise-04`](https://github.com/ai-infra-curriculum/ai-infra-mlops-solutions/tree/main/modules/09-security) — Pod security + NetworkPolicy.
 
-- [`ai-infra-security-solutions/projects/project-1-zero-trust/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects/project-1-zero-trust) — Istio + NetworkPolicy reference.
+- [`ai-infra-security-solutions/projects/project-1-zero-trust/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects/project-1-zero-trust) — Istio + NetworkPolicy reference.
 
 ## Things deliberately not on this list
 

@@ -286,7 +286,7 @@ You'll need access to:
 
 ```bash
 # 1. Clone this repository
-git clone https://github.com/ai-infra-curriculum/ai-infra-security-learning.git
+git clone https://github.com/ai-governance-curriculum/security-learning.git
 cd ai-infra-security-learning
 
 # 2. Install prerequisites
@@ -480,7 +480,7 @@ From this role, you can advance to:
 
 - **Discord Server**: [Join our community](https://discord.gg/ai-infra-security)
 - **Office Hours**: Fridays 2-4 PM PT (calendar link in Discord)
-- **GitHub Discussions**: [Ask questions, share projects](https://github.com/ai-infra-curriculum/ai-infra-security-learning/discussions)
+- **GitHub Discussions**: [Ask questions, share projects](https://github.com/ai-governance-curriculum/security-learning/discussions)
 - **Email Support**: security-track@ai-infra-curriculum@joshua-ferguson.com
 
 ### Contribute
@@ -530,7 +530,7 @@ Special thanks to our reviewers and beta testers.
 - ☐ Security chaos engineering
 - ☐ Advanced threat hunting with ML
 
-**Suggest features**: [GitHub Issues](https://github.com/ai-infra-curriculum/ai-infra-security-learning/issues)
+**Suggest features**: [GitHub Issues](https://github.com/ai-governance-curriculum/security-learning/issues)
 
 ---
 

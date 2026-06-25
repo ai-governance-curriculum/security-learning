@@ -141,7 +141,7 @@
 
 ## Cross-references within this curriculum
 
-- [`ai-infra-security-solutions/projects/project-3-adversarial-defense/SOLUTION.md`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-3-adversarial-defense/SOLUTION.md) — Reference design with PGD, DP-SGD, input validation, rate limit.
+- [`ai-infra-security-solutions/projects/project-3-adversarial-defense/SOLUTION.md`](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-3-adversarial-defense/SOLUTION.md) — Reference design with PGD, DP-SGD, input validation, rate limit.
 
 - [`ai-infra-mlops-learning/projects/project-5-llmops/`](https://github.com/ai-infra-curriculum/ai-infra-mlops-learning/tree/main/projects/project-5-llmops) — LLM-safety pipeline reference.
 

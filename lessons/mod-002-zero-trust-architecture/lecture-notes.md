@@ -631,7 +631,7 @@ A working checklist:
 
 After this module:
 
-1. Read the `SOLUTION.md` for [project-1-zero-trust](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-1-zero-trust/SOLUTION.md)
+1. Read the `SOLUTION.md` for [project-1-zero-trust](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-1-zero-trust/SOLUTION.md)
    — it makes more sense now.
 2. Skim the **NIST SP 800-207** document; you don't have to read
    it cover-to-cover, but knowing what it says is useful.

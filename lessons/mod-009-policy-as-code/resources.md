@@ -62,7 +62,7 @@
 
 - [`ai-infra-engineer-solutions/modules/mod-109-infrastructure-as-code/exercise-08-policy-as-code/kyverno`](https://github.com/ai-infra-curriculum/ai-infra-engineer-solutions/tree/main/modules/mod-109-infrastructure-as-code/exercise-08-policy-as-code) — Reference Kyverno + OPA setup.
 
-- [`ai-infra-security-solutions/projects/project-4-secure-cicd/SOLUTION.md`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-4-secure-cicd/SOLUTION.md) — Admission policies that verify signed artifacts.
+- [`ai-infra-security-solutions/projects/project-4-secure-cicd/SOLUTION.md`](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-4-secure-cicd/SOLUTION.md) — Admission policies that verify signed artifacts.
 
 ## Books / courses
 

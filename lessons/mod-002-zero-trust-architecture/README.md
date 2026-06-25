@@ -72,4 +72,4 @@ After this module, you should have:
 - **Quiz**: [`quiz.md`](./quiz.md)
 - **Resources**: [`resources.md`](./resources.md)
 - **Paired project**: [`projects/project-1-zero-trust/`](../../projects/project-1-zero-trust/)
-- **Paired reference solution**: [`ai-infra-security-solutions/projects/project-1-zero-trust/SOLUTION.md`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-1-zero-trust/SOLUTION.md)
+- **Paired reference solution**: [`ai-infra-security-solutions/projects/project-1-zero-trust/SOLUTION.md`](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-1-zero-trust/SOLUTION.md)

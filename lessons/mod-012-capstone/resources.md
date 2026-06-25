@@ -51,7 +51,7 @@ work:
 
 - The full security-learning track: [`../`](../).
 - The 5 capstone projects in the paired solutions repo:
-  [`ai-infra-security-solutions/projects/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects).
+  [`ai-infra-security-solutions/projects/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects).
 
 ## What's deliberately not on this list
 

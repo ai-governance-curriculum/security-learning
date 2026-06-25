@@ -125,4 +125,4 @@ leave SmartRecs. Write it as if for that audience.
 ## Solution comparison
 
 After writing your own, compare against the reference roadmap in
-[`ai-infra-security-solutions/modules/mod-002-zero-trust-architecture/exercise-05/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/modules/mod-002-zero-trust-architecture) (when published).
+[`ai-infra-security-solutions/modules/mod-002-zero-trust-architecture/exercise-05/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/modules/mod-002-zero-trust-architecture) (when published).

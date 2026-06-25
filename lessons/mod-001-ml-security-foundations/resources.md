@@ -185,7 +185,7 @@ the three threat classes is a reasonable floor.
   this learning repo. Read each project's README after this module
   to understand what skills will be exercised end-to-end.
 
-- [`ai-infra-security-solutions/projects/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects) — Reference solutions, with `SOLUTION.md` design notes per project.
+- [`ai-infra-security-solutions/projects/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects) — Reference solutions, with `SOLUTION.md` design notes per project.
 
 - [`ai-infra-mlops-learning/projects/project-4-governance/`](https://github.com/ai-infra-curriculum/ai-infra-mlops-learning/tree/main/projects/project-4-governance) — The governance project that several modules of this track build on.
 

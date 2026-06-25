@@ -106,7 +106,7 @@
 
 - [`ai-infra-mlops-learning/projects/project-4-governance/`](https://github.com/ai-infra-curriculum/ai-infra-mlops-learning/tree/main/projects/project-4-governance) — Audit chain that records secret-access events.
 
-- [`ai-infra-security-solutions/projects/project-1-zero-trust/SOLUTION.md`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-1-zero-trust/SOLUTION.md) — How secret management integrates with the zero-trust architecture.
+- [`ai-infra-security-solutions/projects/project-1-zero-trust/SOLUTION.md`](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-1-zero-trust/SOLUTION.md) — How secret management integrates with the zero-trust architecture.
 
 ## Things deliberately not on this list
 

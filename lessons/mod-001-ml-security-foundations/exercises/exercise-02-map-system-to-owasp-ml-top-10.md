@@ -80,7 +80,7 @@ A failing matrix:
 ## Solution comparison
 
 After writing your own, compare against the reference matrix in
-[`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-02/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).
+[`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-02/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).
 
 The reference matrix is not the *only* correct matrix; defensible
 matrices will differ in priority ordering and effort estimates.

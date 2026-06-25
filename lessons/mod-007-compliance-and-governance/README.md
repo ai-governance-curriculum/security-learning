@@ -77,4 +77,4 @@ You will learn:
 - **Quiz**: [`quiz.md`](./quiz.md)
 - **Resources**: [`resources.md`](./resources.md)
 - **Paired project**: [`projects/project-2-compliance/`](../../projects/project-2-compliance/)
-- **Paired solution**: [`ai-infra-security-solutions/projects/project-2-compliance/SOLUTION.md`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-2-compliance/SOLUTION.md)
+- **Paired solution**: [`ai-infra-security-solutions/projects/project-2-compliance/SOLUTION.md`](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-2-compliance/SOLUTION.md)

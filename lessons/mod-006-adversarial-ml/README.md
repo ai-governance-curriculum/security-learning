@@ -83,4 +83,4 @@ this module especially, going to the papers is worth the time.
 - **Quiz**: [`quiz.md`](./quiz.md)
 - **Resources**: [`resources.md`](./resources.md)
 - **Paired project**: [`projects/project-3-adversarial-defense/`](../../projects/project-3-adversarial-defense/)
-- **Paired solution**: [`ai-infra-security-solutions/projects/project-3-adversarial-defense/SOLUTION.md`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-3-adversarial-defense/SOLUTION.md)
+- **Paired solution**: [`ai-infra-security-solutions/projects/project-3-adversarial-defense/SOLUTION.md`](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-3-adversarial-defense/SOLUTION.md)

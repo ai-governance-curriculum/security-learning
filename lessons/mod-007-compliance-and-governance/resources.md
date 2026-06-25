@@ -113,7 +113,7 @@ and report into the audit-chain.
 
 - [`ai-infra-mlops-learning/projects/project-4-governance/`](https://github.com/ai-infra-curriculum/ai-infra-mlops-learning/tree/main/projects/project-4-governance) — Reference governance project with audit chain, fairness, model cards, subject-rights API.
 
-- [`ai-infra-security-solutions/projects/project-2-compliance/SOLUTION.md`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-2-compliance/SOLUTION.md) — Security-side compliance additions on top of the governance base.
+- [`ai-infra-security-solutions/projects/project-2-compliance/SOLUTION.md`](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-2-compliance/SOLUTION.md) — Security-side compliance additions on top of the governance base.
 
 - [`ai-infra-architect-solutions/projects/project-305-security-framework/SOLUTION.md`](https://github.com/ai-infra-curriculum/ai-infra-architect-solutions/blob/main/projects/project-305-security-framework/SOLUTION.md) — Architecture-level compliance + security framework.
 

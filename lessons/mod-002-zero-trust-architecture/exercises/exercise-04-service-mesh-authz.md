@@ -127,5 +127,5 @@ denied paths, and verify the denials are returned as expected
 ## Solution comparison
 
 After writing your own, compare to the reference policies in
-[`ai-infra-security-solutions/projects/project-1-zero-trust/istio/authz-policy.yaml`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/blob/main/projects/project-1-zero-trust/istio/authz-policy.yaml)
+[`ai-infra-security-solutions/projects/project-1-zero-trust/istio/authz-policy.yaml`](https://github.com/ai-governance-curriculum/security-solutions/blob/main/projects/project-1-zero-trust/istio/authz-policy.yaml)
 (when published).

@@ -134,4 +134,4 @@ A failing review:
 ## Solution comparison
 
 After writing your own, compare against the reference review in
-[`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-04/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).
+[`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-04/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).

@@ -109,4 +109,4 @@ implement it.
 ## Solution comparison
 
 After writing your own, compare against the reference walkthrough
-in [`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-03/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).
+in [`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-03/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).

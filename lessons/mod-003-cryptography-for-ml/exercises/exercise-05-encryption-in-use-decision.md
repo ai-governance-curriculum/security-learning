@@ -143,4 +143,4 @@ security engineer produces in any given quarter. The exercise of
 ## Solution comparison
 
 After writing your own, compare against the reference document
-in [`ai-infra-security-solutions/modules/mod-003-cryptography-for-ml/exercise-05/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/modules/mod-003-cryptography-for-ml) (when published).
+in [`ai-infra-security-solutions/modules/mod-003-cryptography-for-ml/exercise-05/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/modules/mod-003-cryptography-for-ml) (when published).

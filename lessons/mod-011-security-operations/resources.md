@@ -113,7 +113,7 @@
 
 ## Cross-references in this curriculum
 
-- [`ai-infra-security-solutions/projects/project-5-security-operations/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects/project-5-security-operations) — Reference SOC project with Sigma rules + playbooks + tabletops.
+- [`ai-infra-security-solutions/projects/project-5-security-operations/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects/project-5-security-operations) — Reference SOC project with Sigma rules + playbooks + tabletops.
 
 - [`ai-infra-engineer-solutions/modules/mod-108-monitoring-observability/exercise-09-incident-response-gameday`](https://github.com/ai-infra-curriculum/ai-infra-engineer-solutions/tree/main/modules/mod-108-monitoring-observability/exercise-09-incident-response-gameday) — Game day reference.
 

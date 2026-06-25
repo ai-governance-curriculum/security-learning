@@ -29,7 +29,7 @@ subsequent module in this track depends on:
 6. **Where you sit in the org** — the security role's interface to
    ML, platform, and engineering teams.
 
-By the end of the module you should be able to read the [`ai-infra-security-solutions`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions) project SOLUTION.md files and recognize *why* each control is where it is.
+By the end of the module you should be able to read the [`ai-infra-security-solutions`](https://github.com/ai-governance-curriculum/security-solutions) project SOLUTION.md files and recognize *why* each control is where it is.
 
 ## How to work through this module
 
@@ -82,4 +82,4 @@ you will produce on the job.
 - **Exercises**: [`exercises/`](./exercises/)
 - **Quiz**: [`quiz.md`](./quiz.md)
 - **Resources**: [`resources.md`](./resources.md)
-- **Paired solutions repo**: [`ai-infra-security-solutions`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions)
+- **Paired solutions repo**: [`ai-infra-security-solutions`](https://github.com/ai-governance-curriculum/security-solutions)

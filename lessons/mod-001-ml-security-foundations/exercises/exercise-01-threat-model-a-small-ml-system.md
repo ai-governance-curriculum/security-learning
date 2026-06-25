@@ -119,7 +119,7 @@ Save the threat model to your own notes. You will reuse it in:
 ## Solution comparison
 
 After writing your own, compare against the reference threat model
-in [`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-01/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).
+in [`ai-infra-security-solutions/modules/mod-001-ml-security-foundations/exercise-01/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/modules/mod-001-ml-security-foundations) (when published).
 
 Don't read the reference first. The point is to discover what *you*
 spot before being told what to spot.

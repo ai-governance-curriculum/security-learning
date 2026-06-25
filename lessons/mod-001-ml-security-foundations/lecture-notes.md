@@ -654,7 +654,7 @@ Once you finish this module:
    are what the track is *for*; everything else exists to make you
    capable of building them.
 2. Read the `SOLUTION.md` files in
-   [`ai-infra-security-solutions/projects/`](https://github.com/ai-infra-curriculum/ai-infra-security-solutions/tree/main/projects).
+   [`ai-infra-security-solutions/projects/`](https://github.com/ai-governance-curriculum/security-solutions/tree/main/projects).
    Each one names the threat model and the controls that respond
    to it.
 3. Move to **Module 02: Zero-Trust Architecture**.
