@@ -1,33 +1,112 @@
-# Curriculum Guide
+# AI/ML Security & Governance Engineer Curriculum
 
-This document defines the expected learner-facing structure for `ai-infra-security-learning`.
+**Role level:** 35 (hands-on engineering specialist — AI Governance family)
+**Family:** AI Governance
+**Status:** planned — modules and projects below are the planned scope authored from [`.aicg/curriculum-plan.json`](.aicg/curriculum-plan.json). Lessons and projects will be materialised by subsequent autonomous content cycles. Existing `lessons/mod-001-*` .. `lessons/mod-012-*` content produced under an earlier framing is preserved for reuse; the plan's `ownership_links[]` names the migration action per legacy module.
 
-## Repository Type
+## Overview
 
-- Track type: learning
-- Paired solutions repo: `ai-infra-security-solutions`
-- Primary content directory: `lessons/`
+This track teaches the *engineering craft* of AI/ML security and governance end-to-end for a hands-on specialist at level 35. It sits at the intersection of two disciplines:
 
-## Top-Level Layout
+- **AI security engineering** — reading the four operative ML/LLM security taxonomies (OWASP ML Top 10, OWASP LLM Top 10 v2025, MITRE ATLAS, NIST AI 100-2) as an engineer would → threat-modelling ML/LLM systems with attack trees and prioritised mitigations → hardening the ML platform with zero-trust architecture (NIST SP 800-207), workload identity (SPIFFE / SPIRE), network segmentation, and admission-time policy-as-code → adversarial-ML defence at platform scale (adversarial training, certified defences, DP-SGD, in-serving detection monitors) → LLM and agent security engineering (indirect prompt injection, agent-tool ACLs, red-team engineering with UK AISI Inspect) → ML supply-chain security (SLSA for models, cosign / sigstore, ML-BOM, ModelScan for malicious pickle files, Hugging Face Hub hygiene) → runtime security and detection engineering for ML workloads (Falco, eBPF, ATLAS-mapped detection content) → security operations and incident response for AI-specific events (SIEM integration, IR playbooks, SOC interface).
+- **AI governance engineering** — translating NIST AI RMF, ISO/IEC 42001, EU AI Act Articles 9–15, SOC 2 TSCs, and sector regs (SR 11-7, FDA GMLP, HIPAA Security Rule) into enforceable engineering controls → authoring policy-as-code (OPA / Rego, Gatekeeper) that gates model deployments on required evidence → producing audit-ready evidence packages → integrating with the enterprise control library → cross-functional program leadership at the security-track slice (control-library ownership, program metrics, regulator-support runbook, CISO / Legal / AI Governance interface).
 
-- `lessons/`: module content
-- `projects/`: project and capstone work
-- `assessments/`: quizzes, practical exams, and rubrics
-- `community/`: learner support docs
-- `resources/`: shared tools, cheat sheets, and reading lists
+It is a **hands-on engineering specialist track at level 35**, positioned in the **AI Governance family**, between the AI Risk Engineer (level 25, harm modelling / risk quantification / guardrails) and the Agentic Safety & Red-Team Engineer (level 40, frontier-agent methodology) / Senior AI Governance Architect (level 50, control-library architecture). The differentiator against the peer `ai-evaluation-engineer-learning` (level 35, same family — release-assurance methodology and regulator-facing evidence packaging) is *security-engineering ownership*: this curriculum owns the threat model, the platform hardening, the adversarial-ML and LLM-attack defences, the ML supply-chain controls, the detection content, and the IR playbooks.
 
-## Module Minimums
+Total planned commitment: **180 hours across 12 modules** + **125 hours across 3 projects** = **~305 hours**.
 
-Each module should include:
+## Ownership rule
 
-- `README.md`
-- `lecture-notes.md` or numbered lecture files
-- `exercises/`
-- `quiz.md`
-- `resources.md`
+Following the project-wide ownership rule, this curriculum:
 
-## Structural Rules
+- **Owns** the engineering craft of AI/ML security and governance end-to-end — engineering-grade fluency with the ML/LLM security taxonomies, threat modelling for ML/LLM systems, zero-trust ML platform architecture, secrets and key management for ML, ML supply-chain security, adversarial-ML defence at platform scale, LLM and agent security engineering, privacy engineering for ML, AI governance and compliance engineering translated to policy-as-code and evidence, data and model lineage security, runtime security and detection engineering for ML workloads, security operations and IR for AI incidents, and cross-functional program leadership at the security-track slice.
+- **Defers down** to [`ai-governance-analyst-learning`](https://github.com/ai-governance-curriculum/ai-governance-analyst-learning) (level 15) for framework-crosswalk and policy-tracking legwork; to [`ml-engineer-learning`](https://github.com/ml-engineering-curriculum/ml-engineer-learning) (level 20) for classical ML fundamentals; to [`ai-infra-engineer-learning`](https://github.com/ai-infra-curriculum/ai-infra-engineer-learning) (level 25) and [`ai-infra-senior-engineer-learning`](https://github.com/ai-infra-curriculum/ai-infra-senior-engineer-learning) (level 30) for general infrastructure hardening prerequisites; to [`ai-infra-junior-engineer-learning`](https://github.com/ai-infra-curriculum/ai-infra-junior-engineer-learning) (level 10) for engineering-craft basics.
+- **Defers sideways** to [`ai-risk-engineer-learning`](https://github.com/ai-governance-curriculum/ai-risk-engineer-learning) (level 25) for harm-model authoring, risk quantification, guardrail-engineering, and enterprise AI risk register engineering — this role consumes those artifacts as input to threat models and detection content; to [`ai-infra-mlops-learning`](https://github.com/ai-infra-curriculum/ai-infra-mlops-learning) (peer, level 25) for MLOps automation this role wires security gates into; to [`ai-infra-ml-platform-learning`](https://github.com/ai-infra-curriculum/ai-infra-ml-platform-learning) (peer, level 30) for the self-service ML platform this role's zero-trust and runtime-security slices plug into; to peer AI Engineering tracks [`llm-application-developer-learning`](https://github.com/ai-engineering-curriculum/llm-application-developer-learning) and [`rag-engineer-learning`](https://github.com/ml-engineering-curriculum/rag-engineer-learning) (level 25) for the LLM/RAG systems this role assesses.
+- **Defers up (peer)** to [`ai-evaluation-engineer-learning`](https://github.com/ai-governance-curriculum/ai-evaluation-engineer-learning) (peer, level 35, same family) for release-assurance methodology, audit-trail packaging, and regulator-facing evidence review — this role produces the security-engineering evidence (adversarial-ML test results, ML-BOM, signed provenance, red-team reports) that peer packages into release-assurance reviews.
+- **Defers up** to [`agentic-safety-engineer-learning`](https://github.com/ai-governance-curriculum/agentic-safety-engineer-learning) (level 40) for frontier-agent red-team methodology and dangerous-capability evaluation; to [`senior-ai-governance-architect-learning`](https://github.com/ai-governance-curriculum/senior-ai-governance-architect-learning) (level 50) for control-library *architecture*, policy taxonomy, and cross-jurisdiction reconciliation — this role owns the security section of the library, not the library architecture; to [`head-of-ai-governance-learning`](https://github.com/ai-governance-curriculum/head-of-ai-governance-learning) (level 60) for program leadership, board-level reporting, and regulator engagement; to [`chief-ai-officer-learning`](https://github.com/ai-governance-curriculum/chief-ai-officer-learning) (level 70) for executive scope.
+- **Out of scope** to legal counsel (this role does not deliver legal opinion) and to enterprise Security Operations / DFIR (this role authors AI-specific detection content and IR playbooks; SOC-side incident handling stays with the enterprise SOC).
 
-- Keep module slugs consistent with `ai-infra-security-solutions`.
-- Keep learner-facing material in this repository and operational notes in `_meta/housekeeping/`.
-- Treat this file as the structural baseline, not proof that the content is complete.
+See [`JOB_REQUIREMENTS.md`](JOB_REQUIREMENTS.md) for the requirements-to-coverage map and the cited public references the catalog is grounded in.
+
+## Module plan
+
+| Module | Title | Hours | Status |
+|---|---|---|---|
+| mod-101-ml-security-governance-position | AI/ML Security & Governance Engineer — Frameworks, Position on the Ladder, and Working Vocabulary | 12 | planned |
+| mod-102-threat-modelling-for-ai-ml-systems | Threat Modelling for AI/ML Systems — Assets, TTPs, Attack Trees, Mitigation Priorities | 14 | planned |
+| mod-103-secure-ml-platform-architecture | Secure ML Platform Architecture — Zero-Trust, Workload Identity, Segmentation, Admission-Time Controls | 16 | planned |
+| mod-104-data-and-model-lineage-security | Data and Model Lineage Security — Signed Provenance, Immutable Audit, ML-BOM, Evidence Linking | 14 | planned |
+| mod-105-secrets-and-key-management | Secrets and Key Management for ML — Vault, KMS, Keyless CI, Ephemeral Credentials | 12 | planned |
+| mod-106-adversarial-ml-defense | Adversarial ML Defence at Platform Scale — Evasion, Poisoning, Extraction, Inference, Backdoors | 18 | planned |
+| mod-107-llm-agent-security | LLM and Agent Security Engineering — OWASP LLM Top 10, Prompt Injection, Tool ACLs, Agent Red-Teaming | 16 | planned |
+| mod-108-privacy-engineering-for-ml | Privacy Engineering for ML — Differential Privacy, PETs, Inference-Attack Mitigation, PII/PHI Controls | 14 | planned |
+| mod-109-ai-governance-and-compliance-engineering | AI Governance and Compliance Engineering — Frameworks to Enforceable Controls, Policy-as-Code, Evidence | 16 | planned |
+| mod-110-supply-chain-security-for-ai | AI Supply Chain Security — SLSA for Models, Signing, ML-BOM, Malicious Model File Defence | 16 | planned |
+| mod-111-security-operations-and-incident-response-for-ml | Security Operations and Incident Response for ML — Detection Engineering, IR Playbooks, SOC Interface | 16 | planned |
+| mod-112-program-leadership-for-ml-security-governance | Program Leadership for the ML Security & Governance Slice — Control Library, Metrics, Regulator Support | 16 | planned |
+
+## Project plan
+
+| Project | Title | Hours | Status |
+|---|---|---|---|
+| project-101-secure-mlops-gate-for-one-model | Secure MLOps Gate for One Model — SLSA L3, Signed Artifacts, ML-BOM, Policy-as-Code Admission | 35 | planned |
+| project-102-adversarial-defense-and-privacy-bundle | Adversarial Defence + Privacy Bundle for One Model — Robustness + DP-SGD + Inference-Attack Mitigation | 40 | planned |
+| project-103-ai-governance-control-library-slice | AI Governance Control-Library Slice — NIST AI RMF + EU AI Act + ISO 42001 Mapped End-to-End to a Live LLM Application | 50 | planned |
+
+## Module summaries
+
+### mod-101 — AI/ML Security & Governance Engineer Position on the Ladder
+Read OWASP ML Security Top 10 and OWASP LLM Top 10 v2025 as an engineer — mapping each risk to concrete controls, detections, and evidence artifacts. Read MITRE ATLAS as the living TTP catalogue against which detection content and playbooks are authored. Read NIST AI 100-2 as the working adversarial-ML vocabulary. Read NIST AI RMF, ISO/IEC 42001, and EU AI Act Articles 9–15 at the depth required to translate each obligation into a security-engineering deliverable rather than a governance-only artifact. Diagram this role's exact scope on the ladder — what `ai-risk-engineer` (level 25), `ai-evaluation-engineer` (peer, level 35), `agentic-safety-engineer` (level 40), `senior-ai-governance-architect` (level 50), and `head-of-ai-governance` (level 60) own or inherit.
+
+### mod-102 — Threat Modelling for AI/ML Systems
+Author an ML-adapted STRIDE model that names the ML-specific asset classes (training data, model artifact, decision surface, prompt / tool graph, embedding index) as first-class assets. Map identified threats to MITRE ATLAS TTPs and NIST AI 100-2 attack families, producing an inventory an incident-response function can consume. Author attack trees for the top three threats and rank mitigations by cost / coverage / detectability trade-off. Distinct from `ai-risk-engineer` harm modelling (which centres on affected populations and societal harm) — this role authors *technical* threat models focused on attacker capability, entry point, and exploit chain.
+
+### mod-103 — Secure ML Platform Architecture
+Design a zero-trust ML platform following NIST SP 800-207 primitives — never-trust-always-verify applied to training, registry, and serving planes. Deploy workload identity with SPIFFE / SPIRE and mint short-lived credentials for each workload. Author Kubernetes NetworkPolicies and service-mesh authorisation policies that segment training / feature / serving / registry planes. Harden the underlying cluster to the CIS Kubernetes Benchmark and apply Pod Security Admission at the appropriate profile. Author admission-time policy-as-code (OPA / Gatekeeper) that gates model deployments on required security evidence (signed artifact, ML-BOM present, scan clean, provenance verified).
+
+### mod-104 — Data and Model Lineage Security
+Architect end-to-end provenance for training data / features / model artifacts / evaluation runs. Wire cosign / sigstore signing into the training pipeline so that each model artifact carries verifiable build provenance. Produce an ML-BOM (AI-BOM) covering components, datasets, third-party models, licences, provenance claims. Wire lineage evidence into model-card and system-card authoring so external audiences can trace a claim to its underlying artifact. Design an immutable audit-log architecture (WORM / append-only) for training, inference, and deployment events. Distinguishes the *evidence architecture* view of provenance from mod-110's *attack surface* view of supply chain.
+
+### mod-105 — Secrets and Key Management for ML
+Inventory the secrets an ML platform actually holds — training data-store creds, feature-store creds, model-registry creds, external-API keys, model artifact signing keys, judge-model creds, PII / PHI decryption keys. Deploy Vault with dynamic secrets for time-limited access to shared data stores. Configure envelope encryption with cloud KMS for at-rest datasets and model artifacts; separate keys per environment / tenant / sensitivity tier. Wire keyless CI (OIDC → short-lived cloud tokens, keyless cosign signing). Author a secret-leak response runbook — detect, contain, rotate, notify — with concrete SLA numbers.
+
+### mod-106 — Adversarial ML Defence at Platform Scale
+Working command of the adversarial-ML attack families in NIST AI 100-2 and OWASP ML Top 10: evasion, data poisoning, model extraction, membership / attribute inference, backdoor / trojan attacks. Design an adversarial-training pipeline (PGD, TRADES) that runs as part of the standard training platform, not as a bespoke research exercise. Configure certified defences (randomised smoothing) for classifiers where robustness certificates are required. Wire in-serving attack-detection monitors — high query-similarity extraction detection, membership-inference risk monitoring, poisoning-during-continual-learning canaries. Configure DP-SGD end-to-end using Opacus for a training run that must ship with a differential-privacy budget. Deep frontier-lab red-team methodology is linked out to `agentic-safety-engineer` (level 40).
+
+### mod-107 — LLM and Agent Security Engineering
+Working command of the OWASP LLM Top 10 v2025 categories, with a concrete production-scale mitigation for each. Recognise and mitigate indirect prompt injection via retrieved content and tool responses (RAG, browser tool, email tool). Design agent-tool ACLs and human-in-the-loop enforcement patterns that bound Excessive Agency (LLM06) without gutting usability. Author a red-team engagement plan against a production agent, using UK AISI Inspect or an equivalent harness for reproducible runs. Design an incident-severity ladder specific to LLM / agent misuse events (data exfil via tool call, prompt injection exploitation, jailbreak in a customer-facing app). Bounded at enterprise / production-agent scope; frontier-lab red-team methodology stays with `agentic-safety-engineer` (level 40).
+
+### mod-108 — Privacy Engineering for ML
+Configure DP-SGD (Opacus) for a training run, choosing an appropriate (ε, δ) budget and defending the trade-off. Mitigate membership and attribute inference in a deployed model — architectural controls (per-user rate limits, output aggregation), training-time controls (DP), and monitoring. Wire PII / PHI DLP into the training-data pipeline and into prompt logging (Presidio or equivalent). Translate GDPR Articles 22 (automated decisions), 25 (DP by design), and 35 (DPIA) into concrete engineering artifacts. Translate HIPAA Security Rule administrative / physical / technical safeguards into ML-platform-specific controls. Distinct from `ai-risk-engineer` mod-107 (privacy risk assessment) — this module owns the privacy-engineering craft.
+
+### mod-109 — AI Governance and Compliance Engineering
+Translate NIST AI RMF (GOVERN / MAP / MEASURE / MANAGE) sub-categories into concrete security-engineering controls and evidence artifacts. Map ISO/IEC 42001 AIMS clauses onto the security-engineering deliverables that satisfy each clause. Translate EU AI Act Articles 9 (risk management), 10 (data governance), 14 (human oversight), 15 (accuracy / robustness / cybersecurity), and 72 (post-market monitoring) into engineering artifacts a high-risk system must ship with. Author policy-as-code (OPA / Rego) that encodes control obligations as enforceable admission gates. Map SOC 2 TSCs and sector regs (SR 11-7, FDA GMLP / PCCP, HIPAA) onto the same control library. Understand how frontier-lab deployment-tier gating (Anthropic RSP, OpenAI Preparedness, DeepMind FSF) is adapted to enterprise deployment tiers.
+
+### mod-110 — AI Supply Chain Security
+Extend SLSA v1.0 levels 1–3 build-integrity requirements to model artifacts — provenance attestation, hermetic build, isolation between build and run. Sign model artifacts and container images with cosign / sigstore and verify signatures at deployment time. Author an ML-BOM (AI-BOM) that covers datasets, base models, fine-tuning components, third-party dependencies, and licence obligations. Detect malicious code in serialised model files — pickle deserialisation, Keras / TensorFlow SavedModel, HDF5 payloads; run ModelScan; enforce safetensors where possible. Design a hygiene process for consuming third-party models from Hugging Face Hub or similar registries. Position against generic software supply chain (owned upstream) and against NIST SP 800-161.
+
+### mod-111 — Security Operations and Incident Response for ML
+Author ATLAS-mapped detection content for a SIEM (ELK / Splunk / Sentinel) — coverage for model-download anomalies, out-of-band agent tool calls, unusual training-data access, membership-inference attack patterns. Author Falco / eBPF runtime detection rules for ML-workload-specific behaviours. Author AI-specific IR playbooks with concrete step-by-step actions — data-poisoning discovery, prompt-injection exploitation, model theft indicators, agent misuse. Design an AI-incident severity ladder that maps into the enterprise SOC's existing severity model. Define the interface between this role and the enterprise SOC / DFIR / Legal — who owns the alert, who owns the response, who owns the notification.
+
+### mod-112 — Program Leadership for the ML Security & Governance Slice
+Own the AI-security section of the enterprise control library — its scope, its version history, its evidence attachments; hand deeper architectural authoring to `senior-ai-governance-architect` (level 50). Size and scope a new ML-security engagement — inventory assets, name top-N threats, produce a cost-and-coverage matrix, publish the security requirements for the release-gate. Run the CISO / Legal / AI Governance interface — quarterly working sessions, review cadence, escalation path. Produce the ML-security metrics package that feeds the head-of-governance (level 60) board-level report — vulnerability burn-down, coverage of ATLAS TTPs, IR MTTD / MTTR for AI incidents, SLSA-level attainment across the model portfolio. Support regulator engagement without delivering legal opinion.
+
+## Project summaries
+
+### project-101 — Secure MLOps Gate for One Model
+Take one model that a partner team owns and ship an end-to-end secure MLOps gate: SLSA v1.0 provenance for the training build, cosign-signed model artifact + container, ML-BOM covering datasets and third-party components, an OPA / Gatekeeper admission-time policy that blocks deployment when evidence is missing or invalid, and a runbook the partner team can use to fix a broken gate. Deliverables: provenance attestation, ML-BOM, cosign signature + verification flow, OPA policy, admission-controller wiring, one deliberate failure walkthrough demonstrating the gate blocks. **35 hours.** Covers req-04, req-05, req-13, req-09 (policy-as-code slice).
+
+### project-102 — Adversarial Defence + Privacy Bundle
+Take one classifier and produce a hardened defensive bundle: baseline attack-success-rate measurement with ART, an adversarial-training pipeline (PGD or TRADES), a certified-robustness measurement via randomised smoothing, a DP-SGD training run with a defensible (ε, δ) budget, membership-inference risk measurement pre- and post-defence, in-serving detection monitors for extraction and inference risk. Deliverables: pre/post metrics report, hardened model artifact, DP training log, detection-monitor design, and a written trade-off analysis (utility vs. robustness vs. privacy). **40 hours.** Covers req-06 and req-08.
+
+### project-103 — AI Governance Control-Library Slice
+Take one live LLM application (RAG or agentic) and produce a governance control-library slice: NIST AI RMF sub-category → control mapping, ISO/IEC 42001 clause coverage matrix, EU AI Act Article 9 / 10 / 14 / 15 / 72 obligation → engineering-artifact map, OWASP LLM Top 10 mitigation map, red-team engagement report using UK AISI Inspect, ATLAS-mapped detection content, AI-specific IR playbook, immutable audit-log design, and an evidence package suitable for the `ai-evaluation-engineer` peer's release-gate. Deliverables: the mapped control-library section, the OPA policies that enforce it, the red-team report, the IR playbook, and a metrics package that a head-of-governance could take to a board. **50 hours.** Covers req-01, req-02, req-07, req-09, req-11, req-12, req-13.
+
+## What this curriculum does not teach
+
+- **Novel red-team method research** — belongs to `agentic-safety-engineer` (level 40) and academic research.
+- **Control-library architecture** and cross-jurisdiction reconciliation — belongs to `senior-ai-governance-architect` (level 50).
+- **Board-level reporting and regulator engagement** — belongs to `head-of-ai-governance` (level 60).
+- **Legal opinion** — belongs to counsel.
+- **SOC-side incident response** — belongs to enterprise Security Operations. This role authors the AI-specific playbooks the SOC executes.
+- **General-application cloud-security engineering** without an AI/ML component — outside scope; belongs to a general cloud-security track.

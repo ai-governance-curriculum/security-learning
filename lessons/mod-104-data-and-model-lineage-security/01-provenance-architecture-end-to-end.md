@@ -1,0 +1,504 @@
+# Chapter 01 — End-to-End Provenance for ML: What Is Signed, Logged, Retained
+
+> **Note on AI-assisted content.** These lecture chapters were drafted
+> with AI assistance and are under human review. Verify every standard
+> version, tool API, and control claim against the primary source
+> before quoting in production work. See
+> [`resources.md`](./resources.md).
+
+---
+
+## Why this chapter exists
+
+Mod-103 installed the enforcement points that gate model deployments
+— cosign signature check, ML-BOM presence check, SLSA provenance
+check, scan-freshness check. Those gates are only as trustworthy
+as the **evidence they consume**. This module authors that
+evidence.
+
+The specific failure mode this chapter is written to prevent:
+
+> Twelve months after a model was trained, an external auditor asks
+> "which rows from the customer table were in the training set for
+> `fraud-v37`, and can you prove no PII from the EU region was
+> used?" The team runs `git log`, finds the training-pipeline
+> commit, and points at an S3 prefix. The prefix has since been
+> lifecycle-transitioned to Glacier and partially overwritten by a
+> newer job that reused the same key path. No one signed the
+> snapshot at training time. No one recorded the row-count or the
+> hash. Nothing links the deployed model artifact back to the exact
+> dataset version. The audit fails, not because a bad thing
+> happened but because the platform cannot demonstrate what
+> happened at all.
+
+Provenance is the answer to the question *"where did this artifact
+come from, and can you prove it?"* — asked about training data,
+features, model weights, evaluation runs, and deployed inference
+services. This chapter installs the reference architecture the
+rest of the module builds against.
+
+You leave this chapter able to:
+
+- Enumerate the five ML-provenance object classes and, for each,
+  name **what is signed, what is logged, and what is retained** —
+  and for how long.
+- Distinguish **provenance** (how it was made), **lineage** (what
+  it came from), and **audit** (who did what and when), and place
+  each in the reference architecture.
+- Read an ML build-and-deploy pipeline and mark every point where
+  a provenance record should be emitted, signed, and pushed to a
+  transparency log.
+- Defend a retention schedule against the three drivers that set
+  it (regulatory, incident-response, model-monitoring).
+
+Chapters 02–06 turn each row of the reference architecture into an
+enforceable control.
+
+---
+
+## The three questions provenance answers
+
+At an audit, an incident, or a model-drift investigation, someone
+will ask one of three questions. A provenance system that answers
+all three is complete; a system that answers only one is a
+liability.
+
+### Question 1 — "How was this artifact produced?" (provenance)
+
+Given a model file, a dataset snapshot, or a served inference
+response, produce a signed statement describing the **build**:
+which builder ran, on which source revision, with which
+parameters, consuming which materials, at which time, and
+producing which output digest.
+
+The SLSA v1.0 provenance predicate (`https://slsa.dev/provenance/v1`)
+is the canonical shape. It has `buildDefinition` (source, build
+type, parameters) and `runDetails` (builder identity, invocation
+metadata, byproducts). Chapter 03 walks this in depth.
+
+### Question 2 — "What did this artifact come from?" (lineage)
+
+Given a model, name the exact dataset revisions, features,
+tokenizer, base model, and code that went into it. Given a
+dataset, name the upstream sources it was derived from.
+
+Lineage is the *graph* of inputs to outputs. Provenance is the
+*attestation on each edge*. A pipeline can emit accurate lineage
+metadata without provenance signatures (common — MLflow, W&B,
+Vertex Lineage all do this), and provenance signatures without
+full lineage capture (also common — SLSA covers the immediate
+inputs to the build, not the multi-hop dataset genealogy).
+
+Complete lineage-plus-provenance requires both.
+
+### Question 3 — "Who did what and when?" (audit)
+
+Given an event ("this model was promoted to production", "this
+training run ran", "this dataset was ingested"), produce an
+append-only record of the human or workload identity that took
+the action, the resource acted on, the parameters, the result,
+and the timestamp — one that cannot be altered after the fact.
+
+Chapter 06 handles this with WORM / append-only audit-log design.
+
+The three answer types (provenance / lineage / audit) share
+infrastructure — signing keys, transparency logs, evidence stores
+— but they are distinct artifacts and cover distinct questions.
+Do not conflate them.
+
+---
+
+## The five ML provenance object classes
+
+An ML system's provenance surface is not one object; it is five,
+with different generation rates, different signers, and different
+retention drivers. Enumerate them once and design for each.
+
+| Object class | Example instances | Generated by | Rate |
+| --- | --- | --- | --- |
+| **Training data snapshot** | S3 prefix at a point in time; a Delta / Iceberg table version; a Parquet file digest | Data-lake versioning; ingest job | Per ingest / per snapshot |
+| **Feature set** | Feast feature-view materialisation at time T; a feature-store parquet | Feature-materialisation job | Per materialisation |
+| **Model artifact** | `fraud-v42` — the safetensors weights + tokenizer + config | Training pipeline | Per training run |
+| **Evaluation run** | `fraud-v42` scored against eval-set `regulator-2026-Q1` on 2026-04-10 | Evaluation job | Per eval run |
+| **Deployment / serving revision** | KServe `InferenceService` `fraud-prod` at revision R, backed by artifact `fraud-v42@sha256:...` | Admission controller / rollout | Per deploy |
+
+Every artifact in every class should end up with:
+
+- A **canonical digest** (usually SHA-256; SHA-512 where the file
+  format supports it) — computed once, at generation time, and
+  never recomputed downstream (recomputation is a subtle
+  integrity risk).
+- A **provenance attestation** — a signed statement describing
+  how it was produced (chapters 02–03).
+- A **lineage record** — pointers to the upstream artifacts it
+  was produced from (this chapter; enforced by chapter 04's
+  ML-BOM).
+- An **audit-log entry** for the actions taken on it (chapter 06).
+
+The five classes recur across every reference architecture in
+this chapter; use the table above as the checklist for any target
+platform you are assessing.
+
+---
+
+## What is signed vs what is only logged
+
+A common early mistake is signing *everything* or signing
+*nothing*. The right answer is per-object-class and driven by
+adversary model.
+
+**Signed** means an attestation is generated, cryptographically
+signed by an attested identity (chapter 03 of mod-103's SPIFFE
+work is the reference identity), and stored in a
+tamper-evident location (transparency log, WORM bucket).
+
+**Logged** means an event record is written to an append-only
+audit stream (chapter 06), searchable, but not necessarily
+signed per-entry.
+
+The rule of thumb:
+
+- **Sign** anything that will be consumed by an automated policy
+  decision downstream (admission gate, verifier, distributor)
+  where an attacker with write access to a lower-integrity store
+  could otherwise swap the object silently.
+- **Log** anything whose forensic value is contextual — who did
+  what, when, from where — but which is not itself the trust
+  anchor for a downstream decision.
+
+Applied to the five object classes:
+
+| Object class | Sign? | Log? | Rationale |
+| --- | --- | --- | --- |
+| Training data snapshot | Yes — attest the snapshot digest under an ingest-pipeline identity | Yes — the ingest event | The snapshot digest is what a downstream ML-BOM claims was consumed. Downstream verifiers must be able to prove the snapshot the ML-BOM references is the snapshot they got. |
+| Feature set | Yes — attest the materialisation digest under a feature-pipeline identity | Yes | Same reason — features are inputs to model training and to online inference; the digest binds both. |
+| Model artifact | **Yes** — cosign signature on the OCI-packaged weights + SLSA provenance predicate | Yes — the training run event | The admission gate refuses unsigned artifacts. Chapters 02 and 03. |
+| Evaluation run | Yes — attest the eval-report digest and the model digest it ran against | Yes | Downstream governance and model-card publication rely on the eval report being tied to the exact model version. Chapter 05. |
+| Deployment / serving revision | The **admission decision** is logged with the evidence it consulted; the KServe revision object is a Kubernetes resource with its own audit trail (chapter 06) | Yes | The decision itself is signed by the admission controller's identity; the deployment resource is version-controlled and audit-logged. |
+
+Everything crosses at least a "log" bar; the artifacts that feed
+policy decisions cross a "sign" bar as well.
+
+---
+
+## What is retained — and for how long
+
+Retention is set by three drivers, in order of overriding
+strength:
+
+1. **Regulatory floors.** The applicable regime prescribes minima
+   for specific artifact classes. Common examples (verify against
+   the specific regime and jurisdiction — laws change):
+   - **EU AI Act** (Regulation (EU) 2024/1689): technical
+     documentation and automatically-generated logs for
+     high-risk AI systems must be retained for at least the
+     lifetime of the system on the market, and specific
+     logging obligations apply (verify article numbers against
+     the OJEU text; see [`resources.md`](./resources.md)).
+   - **HIPAA** (US healthcare): 6 years for records related to
+     PHI-handling systems.
+   - **FRB SR 11-7** (US bank model risk management):
+     effectively "lifetime of model in use plus applicable
+     record-retention period" for model documentation.
+   - **ISO/IEC 42001** (AI management systems): the standard
+     requires documented information retention appropriate to
+     the AI system's risk classification.
+   Each of these needs primary-source verification for the
+   specific jurisdiction and system class — a compliance
+   partner (mod-109) confirms.
+2. **Incident-response window.** The window in which an incident
+   might be discovered and require reconstruction. For most
+   organisations this is 12–24 months. For ML-specific attacks
+   with slow signal (data poisoning, model backdoors), the
+   incident window may extend to the lifetime of the model in
+   production.
+3. **Model-monitoring window.** How far back the ML team needs to
+   go to answer a drift or fairness question. Typically
+   overlaps with the incident-response window.
+
+The composed retention schedule is the **maximum** of the three
+drivers per artifact class. Do not pick the minimum "to save
+storage" — storage is cheap compared to the cost of failing an
+audit or a poisoning investigation.
+
+A reference retention schedule (for a regulated fintech; adapt
+per regime — do not copy verbatim):
+
+| Object class | Retention floor | Storage tier | Deletion / expiry policy |
+| --- | --- | --- | --- |
+| Training data snapshot (digest + manifest only, not the raw data) | 7 years | Hot for the first 30 days, then infrequent-access | Immutable; deletion requires legal-hold clearance |
+| Training data snapshot (raw data) | Per data-retention policy — often shorter than the manifest (e.g. 90–730 days for PII datasets under data-minimisation) | Warm → Cold → Glacier per data-lifecycle policy | Deletion clears the raw content but preserves the digest + manifest above |
+| Feature set | Same as the training data it derives from, plus 1 year | As above | Same |
+| Model artifact | Lifetime of any deployment that ever ran it + 6 years | OCI registry with lifecycle rules; artifacts pinned by deployment cannot be GC'd | Deletion requires (a) confirmation no active deployment references the digest, (b) legal-hold clearance |
+| Evaluation run | 7 years | Object store | Immutable |
+| Deployment audit entry | 7 years (or longer per regime) | WORM tier (S3 Object Lock, GCS Bucket Lock, Azure Immutable Blob) | Immutable within the compliance period |
+| Admission decision log | Same as deployment audit entry | Same | Same |
+
+The **retention units** matter. The *raw dataset* and the *dataset
+digest manifest* are separate artifacts with separate retention
+horizons — this lets a regulated organisation delete raw PII per
+its data-minimisation policy while preserving the ability to
+prove *what dataset digest* was in a training run, indefinitely.
+
+---
+
+## The reference architecture (target state)
+
+The rest of the module builds toward the following architecture.
+Each numbered arrow is a control chapters 02–06 authors.
+
+```
+                    ┌──────────────────────┐
+                    │  Data lake (raw)     │
+                    │  — versioned table    │
+                    │    (Iceberg / Delta)  │
+                    └────────┬─────────────┘
+                             │ (1) ingest event
+                             ▼
+                    ┌──────────────────────┐
+                    │  Ingest pipeline     │
+                    │  — computes snapshot  │
+                    │    digest; signs;     │
+                    │    writes manifest    │────► signed snapshot manifest
+                    └────────┬─────────────┘        (transparency log +
+                             │                       WORM bucket)
+                             │ (2) feature materialisation
+                             ▼
+                    ┌──────────────────────┐
+                    │  Feature store       │
+                    │  — materialised set   │
+                    │    with digest; signed│───► signed feature manifest
+                    └────────┬─────────────┘
+                             │ (3) training job
+                             ▼
+                    ┌──────────────────────┐
+                    │  Training pipeline   │
+                    │  — reads snapshot +   │
+                    │    features by digest │
+                    │  — computes model     │
+                    │    artifact digest    │
+                    │  — cosign signs       │───► signed model artifact
+                    │  — emits SLSA v1      │      (registry + transparency
+                    │    provenance         │       log)
+                    │  — emits CycloneDX    │───► ML-BOM (registry)
+                    │    ML-BOM             │
+                    └────────┬─────────────┘
+                             │ (4) evaluation
+                             ▼
+                    ┌──────────────────────┐
+                    │  Evaluation pipeline │
+                    │  — pinned to model    │
+                    │    digest             │
+                    │  — signs eval report  │───► signed eval report
+                    └────────┬─────────────┘
+                             │ (5) model card + system card
+                             ▼
+                    ┌──────────────────────┐
+                    │  Card publisher      │
+                    │  — model card links   │
+                    │    every claim to a   │
+                    │    signed artifact    │───► published model card
+                    │  — system card links  │      (with evidence pins)
+                    │    to model card +    │
+                    │    deployment set     │
+                    └────────┬─────────────┘
+                             │ (6) admission-time gate (mod-103)
+                             ▼
+                    ┌──────────────────────┐
+                    │  Serving plane       │
+                    │  — pod bound to       │
+                    │    admitted digest    │
+                    │  — every inference    │
+                    │    logged with        │
+                    │    model version tag  │───► inference audit log
+                    └──────────────────────┘      (WORM bucket)
+                             │
+                             │ (7) immutable audit
+                             ▼
+                    ┌──────────────────────┐
+                    │  WORM audit sink     │
+                    │  — object-lock       │
+                    │  — retention lock    │
+                    │  — off-account       │
+                    │    replication       │
+                    │  — inclusion in a    │
+                    │    tamper-evident    │
+                    │    log (Rekor /      │
+                    │    Trillian)         │
+                    └──────────────────────┘
+```
+
+The numbered arrows map to chapters:
+
+- Arrows 1–3 (dataset + feature signing → training-artifact
+  signing): **chapters 02 and 03** (cosign + SLSA/in-toto).
+- Model artifact ML-BOM: **chapter 04**.
+- Evaluation run + card linking: **chapter 05**.
+- Deploy + immutable audit for admission and inference:
+  **chapter 06**.
+
+Every arrow that produces a signed record also produces a
+**log** entry (chapter 06). Signing without logging is
+non-detectable; logging without signing is repudiable.
+
+---
+
+## What "good" versus "bad" looks like
+
+**Bad — lineage-only, no signing.**
+
+> "We use MLflow to track experiments. Every training run
+> records the dataset URI, the git SHA of the training code, and
+> the resulting model file location. The team can reconstruct a
+> training run by opening MLflow. Signing was on the roadmap
+> last quarter; it slipped."
+
+Why it's bad: MLflow tracking is unauthenticated metadata. An
+attacker with database write access to MLflow can rewrite the
+dataset URI, the git SHA, and the model reference of any run.
+The reconstruction is a story MLflow tells you, not a proof.
+
+**Bad — signing-only, no lineage graph.**
+
+> "Every model artifact is cosign-signed at CI. We verify
+> signatures at admission time. Provenance is captured in the
+> SLSA attestation."
+
+Why it's bad: SLSA provenance covers the immediate build
+inputs (source revision, build parameters, materials). It does
+not answer "which dataset version" or "which feature-set
+materialisation" — those must appear in the ML-BOM (chapter
+04) and be signed as separate artifacts referenced from the
+provenance.
+
+**Bad — logging-only, no WORM.**
+
+> "All actions are logged to CloudTrail. We can pull the log
+> at audit time."
+
+Why it's bad: CloudTrail by default is a mutable stream from
+the perspective of an account admin. Without Object Lock on
+the destination bucket and off-account replication (chapter
+06), an attacker who compromises the admin can rewrite the
+audit trail.
+
+**Good — provenance, lineage, and audit composed.**
+
+> "Every dataset snapshot has a signed manifest listing its
+> content digest and its upstream sources; the manifest is
+> pushed to a Rekor transparency log. Every training run
+> consumes datasets and features by digest, produces a
+> cosign-signed model artifact, emits a SLSA v1 provenance
+> attestation, and emits a CycloneDX ML-BOM that names every
+> input by digest. The ML-BOM and the SLSA attestation are
+> signed by the CI's SPIFFE identity and stored in the OCI
+> registry alongside the artifact. Every evaluation run pins
+> to a model digest, signs its report, and appends to the WORM
+> audit sink. Every admission decision is logged with the
+> evidence it consulted. Every inference request is logged with
+> the served model version. The WORM sink has object-lock
+> retention set to the compliance floor, cross-account
+> replication, and inclusion in a Trillian-backed tamper-
+> evident log."
+
+The rest of the module walks the "good" architecture, control
+by control.
+
+---
+
+## Mapping to standards you will be audited against
+
+The reference architecture above satisfies specific clauses in
+each of the standards mod-109 governance consumes. Verify
+current text against the primary source before quoting.
+
+- **ISO/IEC 42001** (AI management systems) — clauses on
+  documented information, operational planning and control,
+  and monitoring of AI system operations. Provenance and audit
+  are the operational evidence backing these clauses.
+  <!-- needs-research: pin the specific ISO/IEC 42001 clause
+  numbers for documented information and operational
+  monitoring once a licensed copy of the standard is on hand;
+  do not cite from memory. -->
+- **EU AI Act** — logging obligations for high-risk AI systems
+  (Article 12), transparency obligations (Article 13),
+  technical documentation (Article 11, Annex IV). Verify
+  article numbering against the OJEU consolidated text.
+  <!-- needs-research: confirm the current OJEU-published
+  article numbering and annex references — Regulation
+  (EU) 2024/1689. -->
+- **NIST AI RMF 1.0** — the MAP, MEASURE, and MANAGE functions
+  each cite artifact-level traceability and documentation.
+- **NIST SP 800-53 rev 5** — AU-family (audit), CM-family
+  (configuration management), and SI-7 (software, firmware,
+  and information integrity) all apply to the audit-log and
+  signed-artifact controls.
+- **SLSA v1.0** — Build L2 requires signed provenance from a
+  hosted build service; Build L3 adds isolation guarantees.
+  Chapter 03.
+- **CycloneDX 1.6 + ML-BOM extension** — the evidence format
+  gated by mod-103's admission policy. Chapter 04.
+
+The pattern for governance work: for each clause the
+organisation must satisfy, name the artifact class this module
+produces that satisfies it and point at the retention row above
+that governs it.
+
+---
+
+## The mistakes this chapter is trying to prevent
+
+- **Treating "we have MLflow" as provenance.** MLflow, W&B, and
+  Vertex Lineage are lineage-tracking systems, not signed-
+  attestation systems. They are useful; they are not the
+  answer to "prove it".
+- **Signing the training artifact and stopping there.** The
+  artifact signature is necessary; without signed dataset and
+  feature attestations that the ML-BOM references, the graph is
+  provable in the middle and unprovable at the leaves.
+- **Retention set by "how much storage we're OK paying for".**
+  Storage cost is trivial compared to a failed audit or an
+  unprovable poisoning investigation. Retention is set by the
+  three drivers above, not by the finance team's OpEx target.
+- **Logging without WORM.** A mutable log is a log an attacker
+  can rewrite. Object-lock, retention-lock, and off-account
+  replication are chapter 06 controls; skipping them defeats
+  the entire audit chain.
+- **Signing the wrong identity.** The signing identity must be
+  the CI / training-pipeline SPIFFE identity from mod-103, not
+  a long-lived shared key. Chapter 02.
+- **Composing the wrong three-of-three.** Provenance answers
+  "how was it made"; lineage answers "what did it come from";
+  audit answers "who did what". A system with two of three has
+  a specific class of audit question it cannot answer.
+
+---
+
+## Summary
+
+- Provenance answers three questions: how was it made
+  (provenance), what did it come from (lineage), who did what
+  and when (audit). All three are required.
+- The ML provenance surface is five object classes: training
+  data snapshots, feature sets, model artifacts, evaluation
+  runs, and deployment / serving revisions. Each has its own
+  signing, logging, and retention rules.
+- What is signed vs what is only logged: sign anything that
+  feeds an automated downstream policy decision; log
+  everything else with forensic value.
+- Retention is set by the maximum of three drivers —
+  regulatory, incident-response, and model-monitoring. Never by
+  storage cost.
+- The reference architecture is a seven-arrow pipeline: raw
+  data → ingest → feature materialisation → training → evaluation
+  → card publication → admission-time gate → serving, with every
+  stage emitting signed and logged records into a WORM sink.
+- The rest of the module walks the arrows: chapter 02 cosign
+  signing of model artifacts; chapter 03 SLSA / in-toto
+  provenance for the build; chapter 04 CycloneDX ML-BOM; chapter
+  05 model-card and system-card evidence linking; chapter 06
+  immutable audit-log architecture.
+- Governance clauses (ISO/IEC 42001, EU AI Act, NIST AI RMF,
+  NIST SP 800-53, SLSA, CycloneDX) each map to specific
+  artifacts this module produces. Mod-109 consumes those
+  artifacts as evidence.
