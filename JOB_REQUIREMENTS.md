@@ -6,8 +6,8 @@
 **Peer packet at same level:** [`ai-evaluation-engineer-learning`](../ai-evaluation-engineer-learning/)
 **Adjacent lower packet:** [`ai-risk-engineer-learning`](../ai-risk-engineer-learning/) (level 25)
 **Adjacent higher packet:** [`agentic-safety-engineer-learning`](../agentic-safety-engineer-learning/) (level 40)
-**Research window:** 2026-06-06 → 2026-09-04
-**Postings sampled:** 32 (target ≥ 25)
+**Research window:** 2026-07-04 → 2026-10-04
+**Postings sampled:** 29 (target ≥ 25)
 **Machine-readable source:** [`.aicg/job-requirements.json`](.aicg/job-requirements.json)
 **Curriculum plan:** [`.aicg/curriculum-plan.json`](.aicg/curriculum-plan.json)
 **Curriculum-plan delta this cycle:** [`.aicg/curriculum-plan-delta.json`](.aicg/curriculum-plan-delta.json) — **no additions**.
@@ -16,22 +16,22 @@
 
 ## Research status — sampled
 
-Live sample captured on 2026-09-04 via WebSearch and WebFetch across the five equivalent titles listed in `research_status.sampling_notes`:
+Refresh of the 2026-09-04 cycle. Live sample captured on 2026-10-04 via WebSearch and WebFetch across the same five equivalent titles:
 `AI Security Engineer`, `ML Security Engineer`, `AI/ML Security & Governance Engineer`, `MLSecOps Engineer`, `AI Security & Compliance Engineer`.
 
-Title-variant distribution (n=32):
+Title-variant distribution (n=29):
 
 | Title variant | Count |
 | --- | --- |
-| `ai-security-engineer` | 17 |
-| `ml-security-engineer` | 5 |
-| `ai-ml-security-governance` | 4 |
-| `ai-security-compliance` | 3 |
+| `ai-security-engineer` | 24 |
+| `ml-security-engineer` | 3 |
+| `ai-ml-security-governance` | 2 |
+| `ai-security-compliance` | 0 |
 | `mlsecops-engineer` | 0 |
 
-The `MLSecOps Engineer` employer-branded title is essentially absent in-market during this window — equivalent scope is folded into `AI Security Engineer` or `Staff AI Security Engineer` postings. This is a stable observation across the 2026 cycles (see peer packet [`ai-risk-engineer-learning`](../ai-risk-engineer-learning/) for the adjacent-role picture).
+The `MLSecOps Engineer` employer-branded title remains essentially absent in-market (confirmed for a second cycle). The `AI Security & Compliance Engineer` variant is empty this cycle — the prior cycle's xAI GRC Frameworks & AI Governance posting has filled, and the compliance-adjacent band is partly absorbed into the Aimpoint governance-architect role.
 
-Posting-date metadata was extractable for only one posting (Jobgether AI Governance Security Engineer, posted 2026-07-26); the rest are treated as in-window because the ATS surface returned an active listing on 2026-09-04 (Greenhouse / Lever / Breezy / vendor-branded careers pages typically retire postings within 30–60 days of fill).
+Posted-date metadata was extractable for 6 postings this cycle (Xerox 2026-09-30, Spring Health 2026-06-03, Snorkel 2026-08-20, DoorDash 2026-08-24, FanDuel 2026-09-14, Samsara 2026-10-01). The rest returned active ATS listings on 2026-10-04 (Greenhouse / Lever / Breezy / Avature / vendor-branded careers pages typically retire postings within 30–60 days of fill).
 
 ## Ownership rule — where this role sits
 
@@ -79,105 +79,115 @@ The full deferral contract is in [`.aicg/job-requirements.json`](.aicg/job-requi
 
 ## Requirement themes
 
-Frequencies are the observed rate across the 32-posting sample. Six themes clear the 0.30 promotion threshold; the remaining seven are below-threshold in this window but are preserved as required modules because they map to distinct engineering craft that shows up in specific verticals (regulated industries for privacy, ML-platform teams for supply chain and runtime detection, Staff+ roles for leadership and lineage).
+Frequencies are the observed rate across the 29-posting 2026-10 sample, computed strictly from each posting's `requirements_hit[]` field. Nine themes clear the 0.30 promotion threshold this cycle (up from six last cycle); the remaining four are below-threshold in this window but are preserved as required modules because they map to distinct engineering craft that shows up in specific verticals (privacy for health/insurance/finance, cross-functional leadership for Principal/Staff+, data-and-model lineage for regulator-facing readiness).
 
-| ID | Requirement theme | Owner module | References (see `.aicg/job-requirements.json`) | Frequency (n=32) |
-| --- | --- | --- | --- | --- |
-| req-01 | Fluent working command of the four operative ML/LLM security taxonomies (OWASP ML Top 10, OWASP LLM Top 10 v2025→2026, MITRE ATLAS, NIST AI 100-2); OWASP Agentic AI Top 10 is now cited as a companion | [`mod-101-ml-security-governance-position`](lessons/mod-101-ml-security-governance-position/) | `ref-owasp-ml-top-10`, `ref-owasp-llm-top-10`, `ref-owasp-agentic-top-10`, `ref-mitre-atlas`, `ref-nist-ai-100-2` | **0.44** |
-| req-02 | Threat modelling for ML/LLM systems (STRIDE adapted, ATLAS TTP mapping, attack trees, prioritised mitigations) | [`mod-102-threat-modelling-for-ai-ml-systems`](lessons/mod-102-threat-modelling-for-ai-ml-systems/) | `ref-mitre-atlas`, `ref-nist-ai-600-1`, `ref-owasp-llm-top-10`, `ref-cisa-secure-ai` | **0.75** |
-| req-03 | Zero-trust architecture for ML platforms (workload identity, mTLS, network segmentation, K8s hardening, admission gates) | [`mod-103-secure-ml-platform-architecture`](lessons/mod-103-secure-ml-platform-architecture/) | `ref-nist-sp-800-207`, `ref-cis-kubernetes`, `ref-spiffe-spire`, `ref-cncf-security-whitepaper`, `ref-opa-rego`, `ref-gatekeeper`, `ref-iso-27001` | **0.47** |
-| req-04 | Secrets and key management for ML (Vault dynamic secrets, KMS envelope encryption, keyless CI, ephemeral credentials, short-lived agent-tool creds) | [`mod-105-secrets-and-key-management`](lessons/mod-105-secrets-and-key-management/) | `ref-vault-docs`, `ref-sigstore` | 0.25 |
-| req-05 | ML supply-chain security (SLSA for models, cosign/sigstore, ML-BOM, malicious model-file detection, HF Hub hygiene) | [`mod-110-supply-chain-security-for-ai`](lessons/mod-110-supply-chain-security-for-ai/) | `ref-slsa`, `ref-sigstore`, `ref-huggingface-security`, `ref-protect-ai-modelscan`, `ref-nist-sp-800-161`, `ref-eu-cra`, `ref-openssf-mlsecops` | 0.19 |
-| req-06 | Adversarial ML defence at platform scale (evasion, poisoning, extraction, membership inference, backdoors; adversarial training; certified defences; DP-SGD; in-serving detection monitors) — 2026 tooling adds garak / PyRIT | [`mod-106-adversarial-ml-defense`](lessons/mod-106-adversarial-ml-defense/) | `ref-nist-ai-100-2`, `ref-adversarial-robustness-toolbox`, `ref-garak`, `ref-pyrit`, `ref-mitre-atlas`, `ref-owasp-ml-top-10` | 0.25 |
-| req-07 | LLM and agent security engineering (OWASP LLM Top 10 mitigations, OWASP Agentic AI Top 10, indirect prompt injection, MCP-server attack surface, agent tool ACLs, red-team engineering with garak / PyRIT / Inspect) | [`mod-107-llm-agent-security`](lessons/mod-107-llm-agent-security/) | `ref-owasp-llm-top-10`, `ref-owasp-agentic-top-10`, `ref-nist-ai-600-1`, `ref-lakera-prompt-injection-taxonomy`, `ref-uk-aisi-inspect`, `ref-garak`, `ref-pyrit`, `ref-mitre-atlas` | **0.88** |
-| req-08 | Privacy engineering for ML (DP-SGD, PETs, inference-attack mitigation, PII/PHI DLP, GDPR / HIPAA to controls) | [`mod-108-privacy-engineering-for-ml`](lessons/mod-108-privacy-engineering-for-ml/) | `ref-opacus`, `ref-gdpr`, `ref-hhs-hipaa-security`, `ref-nist-sp-800-53`, `ref-nist-ai-100-2` | 0.16 |
-| req-09 | AI governance and compliance engineering (NIST AI RMF, ISO/IEC 42001, EU AI Act, SOC 2, sector regs; policy-as-code; audit evidence; continuous evidence pipelines) | [`mod-109-ai-governance-and-compliance-engineering`](lessons/mod-109-ai-governance-and-compliance-engineering/) | `ref-nist-ai-rmf`, `ref-nist-ai-600-1`, `ref-iso-42001`, `ref-iso-27001`, `ref-eu-ai-act`, `ref-aicpa-soc2`, `ref-nist-sp-800-53`, `ref-anthropic-rsp`, `ref-openai-preparedness`, `ref-deepmind-fsf`, `ref-eu-cra` | **0.53** |
-| req-10 | Runtime security and detection engineering for ML workloads (Falco, eBPF, ML-specific detection content, agentic-workflow anomaly detection) | [`mod-111-security-operations-and-incident-response-for-ml`](lessons/mod-111-security-operations-and-incident-response-for-ml/) | `ref-falco`, `ref-mitre-atlas`, `ref-cis-kubernetes` | 0.25 |
-| req-11 | Security operations and incident response for ML (SIEM integration, ATLAS-mapped detection, AI-specific IR playbooks incl. shadow-AI enforcement, SOC interface) | [`mod-111-security-operations-and-incident-response-for-ml`](lessons/mod-111-security-operations-and-incident-response-for-ml/) | `ref-mitre-atlas`, `ref-nist-ai-100-2`, `ref-uk-aisi-inspect`, `ref-c2pa`, `ref-nist-ai-100-4` | **0.47** |
-| req-12 | Cross-functional leadership of the ML security & governance slice (control-library ownership, program metrics, regulator support) | [`mod-112-program-leadership-for-ml-security-governance`](lessons/mod-112-program-leadership-for-ml-security-governance/) | `ref-cisa-secure-ai`, `ref-nist-ai-rmf`, `ref-iso-42001`, `ref-eu-ai-act`, `ref-anthropic-rsp` | 0.25 (≈ 1.0 among Principal/Staff+) |
-| req-13 | Data and model lineage security (signed provenance, immutable audit, ML-BOM, model-card evidence linking) | [`mod-104-data-and-model-lineage-security`](lessons/mod-104-data-and-model-lineage-security/) | `ref-slsa`, `ref-sigstore`, `ref-nist-ai-rmf`, `ref-eu-ai-act`, `ref-iso-42001` | 0.19 |
+| ID | Requirement theme | Owner module | References (see `.aicg/job-requirements.json`) | Frequency (n=29) | Δ vs 2026-09 |
+| --- | --- | --- | --- | --- | --- |
+| req-01 | Fluent working command of the four operative ML/LLM security taxonomies (OWASP ML Top 10, OWASP LLM Top 10 v2025→2026, MITRE ATLAS, NIST AI 100-2); OWASP Agentic AI Top 10 cited as a companion | [`mod-101-ml-security-governance-position`](lessons/mod-101-ml-security-governance-position/) | `ref-owasp-ml-top-10`, `ref-owasp-llm-top-10`, `ref-owasp-agentic-top-10`, `ref-mitre-atlas`, `ref-nist-ai-100-2` | **0.48** | +0.04 |
+| req-02 | Threat modelling for ML/LLM systems (STRIDE adapted, ATLAS TTP mapping, attack trees, prioritised mitigations) | [`mod-102-threat-modelling-for-ai-ml-systems`](lessons/mod-102-threat-modelling-for-ai-ml-systems/) | `ref-mitre-atlas`, `ref-nist-ai-600-1`, `ref-owasp-llm-top-10`, `ref-cisa-secure-ai` | **0.76** | +0.01 |
+| req-03 | Zero-trust architecture for ML platforms (workload identity, mTLS, network segmentation, K8s hardening, admission gates, non-human-agent identity) | [`mod-103-secure-ml-platform-architecture`](lessons/mod-103-secure-ml-platform-architecture/) | `ref-nist-sp-800-207`, `ref-cis-kubernetes`, `ref-spiffe-spire`, `ref-cncf-security-whitepaper`, `ref-opa-rego`, `ref-gatekeeper`, `ref-iso-27001` | **0.48** | +0.01 |
+| req-04 | Secrets and key management for ML (Vault dynamic secrets, KMS envelope encryption, keyless CI, ephemeral credentials, short-lived scoped agent-tool creds) | [`mod-105-secrets-and-key-management`](lessons/mod-105-secrets-and-key-management/) | `ref-vault-docs`, `ref-sigstore` | **0.34** | +0.09 |
+| req-05 | ML supply-chain security (SLSA for models, cosign/sigstore, ML-BOM, malicious model-file detection, MCP tool registry provenance) | [`mod-110-supply-chain-security-for-ai`](lessons/mod-110-supply-chain-security-for-ai/) | `ref-slsa`, `ref-sigstore`, `ref-huggingface-security`, `ref-protect-ai-modelscan`, `ref-nist-sp-800-161`, `ref-eu-cra`, `ref-openssf-mlsecops` | **0.41** | +0.22 |
+| req-06 | Adversarial ML defence at platform scale (evasion, poisoning, extraction, membership inference, backdoors; adversarial training; certified defences; DP-SGD; in-serving detection monitors; garak / PyRIT) | [`mod-106-adversarial-ml-defense`](lessons/mod-106-adversarial-ml-defense/) | `ref-nist-ai-100-2`, `ref-adversarial-robustness-toolbox`, `ref-garak`, `ref-pyrit`, `ref-mitre-atlas`, `ref-owasp-ml-top-10` | **0.41** | +0.16 |
+| req-07 | LLM and agent security engineering (OWASP LLM Top 10 mitigations, OWASP Agentic AI Top 10, indirect prompt injection, MCP-server attack surface, agent tool ACLs, red-team engineering with garak / PyRIT / Inspect) | [`mod-107-llm-agent-security`](lessons/mod-107-llm-agent-security/) | `ref-owasp-llm-top-10`, `ref-owasp-agentic-top-10`, `ref-nist-ai-600-1`, `ref-lakera-prompt-injection-taxonomy`, `ref-uk-aisi-inspect`, `ref-garak`, `ref-pyrit`, `ref-mitre-atlas` | **0.90** | +0.02 |
+| req-08 | Privacy engineering for ML (DP-SGD, PETs, inference-attack mitigation, PII/PHI DLP, GDPR / HIPAA to controls) | [`mod-108-privacy-engineering-for-ml`](lessons/mod-108-privacy-engineering-for-ml/) | `ref-opacus`, `ref-gdpr`, `ref-hhs-hipaa-security`, `ref-nist-sp-800-53`, `ref-nist-ai-100-2` | 0.21 | +0.05 |
+| req-09 | AI governance and compliance engineering (NIST AI RMF, ISO/IEC 42001, EU AI Act, SOC 2, sector regs; policy-as-code; audit evidence; continuous evidence pipelines) | [`mod-109-ai-governance-and-compliance-engineering`](lessons/mod-109-ai-governance-and-compliance-engineering/) | `ref-nist-ai-rmf`, `ref-nist-ai-600-1`, `ref-iso-42001`, `ref-iso-27001`, `ref-eu-ai-act`, `ref-aicpa-soc2`, `ref-nist-sp-800-53`, `ref-anthropic-rsp`, `ref-openai-preparedness`, `ref-deepmind-fsf`, `ref-eu-cra` | **0.69** | +0.16 |
+| req-10 | Runtime security and detection engineering for ML workloads (Falco, eBPF, ML-specific detection content, agentic-workflow anomaly detection) | [`mod-111-security-operations-and-incident-response-for-ml`](lessons/mod-111-security-operations-and-incident-response-for-ml/) | `ref-falco`, `ref-mitre-atlas`, `ref-cis-kubernetes` | **0.52** | +0.27 |
+| req-11 | Security operations and incident response for ML (SIEM integration, ATLAS-mapped detection, AI-specific IR playbooks incl. shadow-AI enforcement, SOC interface) | [`mod-111-security-operations-and-incident-response-for-ml`](lessons/mod-111-security-operations-and-incident-response-for-ml/) | `ref-mitre-atlas`, `ref-nist-ai-100-2`, `ref-uk-aisi-inspect`, `ref-c2pa`, `ref-nist-ai-100-4` | **0.41** | -0.06 |
+| req-12 | Cross-functional leadership of the ML security & governance slice (control-library ownership, program metrics, regulator support) | [`mod-112-program-leadership-for-ml-security-governance`](lessons/mod-112-program-leadership-for-ml-security-governance/) | `ref-cisa-secure-ai`, `ref-nist-ai-rmf`, `ref-iso-42001`, `ref-eu-ai-act`, `ref-anthropic-rsp` | 0.03 (sample-skew; see notes) | -0.22 |
+| req-13 | Data and model lineage security (signed provenance, immutable audit, ML-BOM, model-card evidence linking) | [`mod-104-data-and-model-lineage-security`](lessons/mod-104-data-and-model-lineage-security/) | `ref-slsa`, `ref-sigstore`, `ref-nist-ai-rmf`, `ref-eu-ai-act`, `ref-iso-42001` | 0.07 (sample-skew; see notes) | -0.12 |
 
-## What the 2026-09 sample says about the curriculum
+The drops in **req-12** (0.25 → 0.03) and **req-13** (0.19 → 0.07) are sample-composition artefacts, not market signals — this cycle skewed toward hands-on engineering postings (Anthropic engineering, Databricks engineering, platform-vendor security) and had fewer explicit Principal / Staff+ control-library-authoring or signed-provenance postings than the prior cycle. Among this cycle's Staff+ / Principal / Lead postings — Anthropic Staff+ ×2, Databricks Staff, Ripple Sr Staff, FanDuel Staff, Aimpoint Lead, Rithum Staff — cross-functional-leadership scope is still present in prose but not called out in the `key_quotes[]` fields. Both themes are preserved as required modules.
 
-- **All 13 required themes are cited by at least 5 postings.** No theme has fallen out of the required set; no theme is unrepresented in evidence. This is the target state under the continuity-bias contract.
-- **req-07 (LLM/agent security) dominates at 0.88.** Every posting except Scale AI Infra, Glean, and xAI GRC cites some form of LLM/agent-security scope. mod-107 is the load-bearing module for the packet.
-- **req-02 (threat modelling) is right behind at 0.75.** Almost every senior/staff role names "threat model AI features" as a review deliverable. mod-102 is the second load-bearing module.
-- **req-09 (governance + compliance engineering) is at 0.53** — ISO 42001 has caught up with SOC 2 as the second-most-named framework and "continuous evidence pipelines" has become named artifact vocabulary (xAI GRC posting is the clearest example).
-- **req-01 (taxonomies), req-03 (zero-trust for ML platforms), req-11 (SecOps + IR for ML)** all cluster at 0.44–0.47 — the platform-hardening + detection-content + IR-playbook triangle the mid-level packet expects.
-- Below-threshold themes are not dropped: they map to distinct engineering craft demanded by specific verticals (privacy for health/insurance, supply chain for ML-platform vendors, cross-functional leadership for Principal/Staff+).
+## What the 2026-10 sample says about the curriculum
 
-## Emerging themes below the promotion threshold
+- **All 13 required themes are cited by at least 2 postings.** No theme has fallen out of the required set; the dominance structure is unchanged.
+- **req-07 (LLM/agent security) is at 0.90** — virtually every posting except the pure-infrastructure Zscaler Tokyo/Federal roles and the compliance-adjacent Mastercard posting cites some form of LLM/agent-security scope. mod-107 remains the load-bearing module.
+- **req-02 (threat modelling) at 0.76** — now effectively tied with the prior cycle. 2026-10 postings increasingly name "threat model AI/agent features" as a *continuous review deliverable*, not a one-off design-time exercise.
+- **req-09 (governance + compliance engineering) at 0.69** — ISO 42001 is now the second-most-cited framework after SOC 2 and "continuous evidence pipelines" / "auditor-facing control evidence" has become stock vocabulary. Clearest examples: AlphaSense, Aimpoint, FanDuel, Databricks, Ripple.
+- **req-10 (runtime security + detection engineering) jumped from 0.25 to 0.52** — driven by *agentic-workflow anomaly detection* becoming standard shipped scope at platform vendors and frontier labs (Databricks "agentic workflow anomaly detection", Anthropic Cyber Evals "layered abuse-detection architecture", Spring Health "near real-time anomalous model behavior", Air "runtime monitoring for agentic workloads").
+- **req-05 (ML supply chain) jumped from 0.19 to 0.41** — the vendor-consolidation hypothesis from last cycle is confirmed. "AI/ML supply chain", "SBOM for models", "secure dependencies for AI tools", and "MCP tool registry provenance" are now routine shipped deliverables.
+- **req-06 (adversarial ML defence) rose from 0.25 to 0.41** — frontier-lab + platform-vendor red-team / safeguards engineering postings are the drivers (Anthropic ×3, Databricks, Cloudflare, ServiceNow).
+- Below-threshold themes are not dropped: they map to distinct engineering craft demanded by specific verticals.
 
-Under the continuity-bias contract (≥ 3 postings AND ≥ 0.30 frequency AND no existing module can be incrementally extended), **no theme in the 2026-09 sample clears the bar for promotion to a new module**. Every emerging theme is folded into an existing module or held below the threshold with a reassess-next-cycle note.
+## Emerging themes — threshold tracker
 
-- **MCP-server governance and agent-tool ACL depth** — 5–6/32 postings named Model Context Protocol explicitly (Ridgeline, Obsidian, Postman Offensive, Jobgether Governance, Backblaze, Anthropic Corporate). Frequency ≈ 0.16–0.19 — below the 0.30 promotion threshold. **Coverage:** folded inside `mod-107` exercise-03 (agent tool ACL + HITL) and exercise-04 (agent red-team plan with Inspect). Reassess next cycle — MCP-specific enterprise vendor tooling is expected to mature and could lift this to threshold.
-- **AI-assisted-developer-tool governance (Claude Code, Cursor, Copilot, "vibe coding")** — 4/32 postings named this class of tool by name (Atlas HXM, Ridgeline, SmartRent, Anthropic Staff+ AppSec). Frequency ≈ 0.13. **Coverage:** folded inside `mod-107` exercise-03 and `mod-111` IR playbook slice. Reassess next cycle.
-- **Shadow-AI detection and enforcement** — 3/32 postings (AlphaSense, Jobgether Governance, Atlas HXM) cited explicitly. Just clears the ≥ 3 posting count but is at 0.09 frequency — well below the 0.30 threshold. **Coverage:** folded inside `mod-111` IR playbook slice as a specific detection-content deliverable.
-- **Agentic-workflow anomaly detection at runtime** — 5/32 postings (Databricks, OpenAI Agent Security, LTS, Spring Health, Backblaze) cited monitoring of agent behaviour as a required deliverable. Frequency ≈ 0.16. **Coverage:** folded inside `mod-107` exercise-04 (red-team with harness) and `mod-111` (IR / detection engineering).
-- **Confidential computing for AI (Intel TDX, AMD SEV-SNP, NVIDIA H100 CC)** — 0/32 postings cited by name. Continue to keep out-of-scope; still aspirational. Add as an `mod-103` exercise when ≥ 3 postings cite it in a 90-day window.
-- **Post-quantum readiness for ML systems** — 0/32. Still aspirational; do not add.
-- **Federated-learning security at production scale** — 1/32 (xAI AppSec). Niche outside a few hyperscalers and health-sector consortia; keep out-of-scope.
-- **Homomorphic-encryption-based inference** — 0/32 cited by name. Keep as an `mod-108` pointer, not a required exercise.
-- **Watermarking / provenance for generative outputs** — 0/32 cited by name in this sample. C2PA / NIST AI 100-4 stay as `mod-111` references, no exercise until ≥ 3 postings cite it.
+Under the continuity-bias contract, a theme is promoted to a new module only if ALL of: ≥ 3 postings cite it in the 90-day window, frequency ≥ 0.30, AND no existing module / exercise can be incrementally extended.
+
+**One theme crosses both numeric thresholds this cycle for the first time — but is NOT promoted because an existing module already covers it:**
+
+- **MCP-server governance and agent-tool ACL depth** — 10/29 postings (0.34) named MCP by name or near-synonyms: Xerox "MCP servers", GitLab "Secure Model Context Protocol (MCP) Implementations", Ripple "MCP tool registry", FanDuel "AI gateway, MCP tool registry, and agent orchestration", DoorDash "MCP server security", Perplexity "self-hosted models, LLM APIs, agents, MCPs", Air "tool abuse / memory poisoning", Databricks "agent/tool catalog", GuidePoint "agentic coding assistants", Zscaler Federal/Tokyo. **Coverage:** req-07's theme text explicitly lists "MCP-server attack surface" as in-scope; mod-107 lesson 03 (`agent-tool-ACLs-and-HITL`) already has 11 MCP-adjacent references and lesson 04 (`red-teaming-with-Inspect`) covers agent-tool red-team methodology. **Action:** next content-refresh of mod-107 lessons 03–04 should deepen tool-registry admission control, tool-poisoning threat model, and tool-call provenance logging. This is a content edit, not a curriculum-plan-delta.
+
+**Three themes rose this cycle but remain below the 0.30 frequency threshold:**
+
+- **AI-assisted-developer-tool governance (Claude Code, Cursor, Copilot, Codex, "vibe coding")** — 7/29 postings (0.24, up from 0.13). Atlas HXM "guardrails for Claude, Copilot, and AI agents"; GuidePoint "operational experience with agentic coding assistants (Claude, Cursor, Codex)"; Rithum; Aimpoint; Appier; GitLab Enterprise AI; Anthropic Staff+ AppSec. Folded inside mod-107 exercise-03 and mod-111 IR playbook slice. Expected to cross 0.30 within 1–2 cycles.
+- **Agentic-workflow anomaly detection at runtime** — 7/29 (0.24, up from 0.16). Absorbed into mod-111 scope via req-10 which already crossed to 0.52; the agentic-anomaly sub-theme folds inside existing lesson scope.
+- **Shadow-AI detection and enforcement** — 5/29 (0.17, up from 0.09). Zscaler Principal Tokyo/Federal, Ripple "Shadow AI detection capability", GitLab Enterprise AI, AlphaSense. Vendor-side framing is a signal this is becoming enterprise-standard; folded inside mod-111 IR playbook slice.
+
+**Genuinely new themes (not in the existing 13 or 4 tracked lists):**
+
+- **Confidential computing for AI (Intel TDX, AMD SEV-SNP, NVIDIA H100 CC)** — 0/29 cited by name. Still aspirational.
+- **Post-quantum readiness for ML systems** — 0/29. Still aspirational.
+- **Federated-learning security at production scale** — 1/29 (Mastercard, paired with differential privacy). Keep out-of-scope until ≥ 3 cite.
+- **Homomorphic-encryption-based inference** — 0/29 cited by name.
+- **Watermarking / provenance for generative outputs (C2PA, NIST AI 100-4)** — 0/29 cited by name in this sample.
+- **EU AI Act Article 55 systemic-risk obligations named explicitly** — 0/29. The EU AI Act is cited generically in ~4 postings but no posting named Article 55 by number. Architecture-depth stays with senior-ai-governance-architect (level 50).
+
+**Zero genuinely new themes cross ≥ 3 postings AND ≥ 0.30 frequency — identical conclusion to the prior cycle.**
 
 ## Salary evidence
 
-**Sample:** 17 of 32 postings disclosed a base-salary range. Salaries are base only; equity and bonus are excluded. USD anchor; the one CAD range is converted at ≈ 0.72 USD/CAD for the aggregate but retained in native currency below.
+**Sample:** 18 of 29 postings disclosed a base-salary range. Salaries are base only; equity and bonus are excluded. USD anchor; the 2026-10 refresh contained no non-USD disclosures. Three distinct compensation clusters emerged, consistent with the prior cycle shape.
 
-Three distinct compensation clusters emerged. Publishing one aggregate would collapse a 3.5× tier spread that hiring committees can and do distinguish; the packet publishes tiered ranges instead.
+| Tier | Low (USD) | High (USD) | Median band (USD) | Postings |
+| --- | --- | --- | --- | --- |
+| US Senior / Staff AI Security Engineer (platform-adjacent) | 158,000 | 280,000 | 180,000 – 240,000 | 9 (Spring Health, Zscaler Federal, Rithum, AlphaSense, Lightning, Cloudflare, Perplexity, Samsara, FanDuel) |
+| US Principal / Staff+ / Sr Staff (frontier lab / platform vendor) | 193,000 | 485,000 | 290,000 – 400,000 | 7 (Anthropic ×4, Databricks, Ripple, ServiceNow) |
+| US regulated-industry / mid-market | 115,000 | 240,000 | 150,000 – 200,000 | 2 (Mastercard, GitLab) |
 
-| Tier | Low (USD) | High (USD) | Median band (USD) |
-| --- | --- | --- | --- |
-| US Senior / Staff (AI Security Engineer, platform-adjacent) | 155,000 | 300,000 | 205,000 – 260,000 |
-| US Principal / Staff+ (frontier lab / platform vendor) | 231,400 | 544,200 | 295,000 – 405,000 |
-| US AI Security Compliance / GRC variant | 152,000 | 258,000 | 175,000 – 230,000 |
+Non-US disclosures: none this cycle. Xerox (India), Zscaler (Tokyo), Atlas HXM (Canada), and Appier (Taipei) did not disclose ranges.
 
-Non-US disclosures: Forma.ai (Toronto) Senior Security Engineer — CAD 160k–190k (≈ USD 115k–140k at 0.72). Bangalore / Germany / LATAM postings did not disclose ranges.
-
-The tier structure is consistent with the peer packet [`ai-risk-engineer-learning`](../ai-risk-engineer-learning/) reported USD 100k–850k range across a wider level ladder. This packet's level-35 anchor sits above ai-risk-engineer (level 25) as expected.
+The tier structure is consistent with the peer packet [`ai-risk-engineer-learning`](../ai-risk-engineer-learning/) reported USD 100k–850k range across a wider level ladder.
 
 ## Postings
 
-The full posting evidence set is in [`.aicg/job-requirements.json`](.aicg/job-requirements.json) `postings[]`. Summary index below (32 rows):
+The full posting evidence set is in [`.aicg/job-requirements.json`](.aicg/job-requirements.json) `postings[]`. Summary index below (29 rows):
 
 | Employer | Title | Location | Salary (USD unless noted) | URL |
 | --- | --- | --- | --- | --- |
-| Anthropic | Red Team Engineer, Safeguards | SF, CA | 320,000 – 405,000 | https://job-boards.greenhouse.io/anthropic/jobs/5320469008 |
-| Anthropic | Security Engineer, Corporate Security | SF/Seattle/NYC/DC | 320,000 – 405,000 | https://job-boards.greenhouse.io/anthropic/jobs/5397319008 |
-| Anthropic | Staff+ Application Security Engineer | SF/Seattle/NYC | 320,000 – 485,000 | https://job-boards.greenhouse.io/anthropic/jobs/4502508008 |
-| OpenAI | Security Engineer, Agent Security | San Francisco, CA | undisclosed | https://openai.com/careers/security-engineer-agent-security-san-francisco/ |
-| OpenAI | Machine Learning Engineer, Integrity | San Francisco, CA | undisclosed | https://openai.com/careers/machine-learning-engineer-integrity-san-francisco/ |
-| Databricks | Staff Security Software Engineer, AI Security Engineering | Remote USA | 231,400 – 397,650 | https://www.databricks.com/company/careers/security/staff-security-software-engineer-ai-security-engineering--7882009002 |
-| xAI | Application Security Engineer | Palo Alto, CA | 100,000 – 258,000 | https://job-boards.greenhouse.io/xai/jobs/4559147007 |
-| xAI | Sr. Security Engineer - GRC Frameworks & AI Governance | PA / NYC / DC | 152,000 – 258,000 | https://job-boards.greenhouse.io/xai/jobs/5007261007 |
-| Isomorphic Labs | Senior Security Engineer (AI Safety) | London; Lausanne | undisclosed | https://job-boards.greenhouse.io/isomorphiclabs/jobs/6100340004 |
-| Veeam Software | Staff AI Security Engineer | San Jose, CA | 293,100 – 544,200 | https://job-boards.greenhouse.io/veeamsoftware/jobs/4939102101 |
-| Backblaze | Sr. AI Security Engineer | Remote LATAM | undisclosed | https://job-boards.greenhouse.io/backblaze/jobs/5213833008 |
-| Atlas HXM | Senior Security Engineer, AI & DevSecOps | Canada / USA (Remote) | undisclosed | https://job-boards.greenhouse.io/atlasxhm/jobs/8637023002 |
+| Anthropic | Cyber Evaluations Engineer | Remote US / SF / DC | 300,000 – 405,000 | https://job-boards.greenhouse.io/anthropic/jobs/5406367008 |
+| Anthropic | Staff+ Software Engineer, Safeguards | SF / NYC | 320,000 – 485,000 | https://job-boards.greenhouse.io/anthropic/jobs/4951844008 |
+| Anthropic | Red Team Engineer, Safeguards | SF, CA (Remote-Friendly) | 320,000 – 405,000 | https://job-boards.greenhouse.io/anthropic/jobs/5320469008 |
+| Anthropic | Staff+ Application Security Engineer | SF / Seattle / NYC | 320,000 – 485,000 | https://job-boards.greenhouse.io/anthropic/jobs/4502508008 |
+| Databricks | Staff Security Software Engineer, Agentic Security Engineering | Remote USA | 231,400 – 397,650 | https://www.databricks.com/company/careers/security/staff-security-software-engineer-agentic-security-engineering--7882009002 |
+| Ripple | Senior Staff Security Engineer, AI Security | San Francisco, CA | 232,000 – 290,000 | https://ripple.com/careers/all-jobs/job/7961902 |
+| ServiceNow | Senior Staff AI/ML Product Security Engineer | Kirkland, WA / Santa Clara, CA | 193,000 – 328,000 | https://builtin.com/job/senior-staff-aiml-product-security-engineer/4197570 |
+| Spring Health | Staff AI Security Engineer | Seattle, WA (Hybrid) | 208,000 – 251,000 | https://job-boards.greenhouse.io/springhealth66/jobs/4675797005 |
+| FanDuel | Staff AI Security Engineer | New York, NY | 184,000 – 242,000 | https://freehire.me/jobs/staff-ai-security-engineer-fanduel-hdn2uljz |
+| Perplexity | AI Security Engineer | NYC / SF (Hybrid) | 200,000 – 280,000 | https://talents.vaia.com/companies/perplexity-ai-inc/ai-security-engineer-new-york-city-san-francisco-32088933/ |
+| AlphaSense | Senior Product Security Engineer | US Remote | 182,000 – 228,000 | https://job-boards.greenhouse.io/alphasense/jobs/8435357002 |
 | Lightning AI | Senior Application Security Engineer, AI and Machine Learning | SF / Seattle (Hybrid) | 180,000 – 220,000 | https://job-boards.greenhouse.io/lightningai/jobs/7687112003 |
-| LTS | Agentic AI Security Engineer | USA Remote | undisclosed | https://job-boards.greenhouse.io/lts/jobs/4340457009 |
-| Forma.ai | Senior Security Engineer | Toronto, Canada | CAD 160,000 – 190,000 | https://job-boards.greenhouse.io/formaaiinc/jobs/4723179005 |
-| Obsidian Security | Software Engineer - AI Security Product | Palo Alto, CA | 155,000 – 180,000 | https://job-boards.greenhouse.io/obsidiansecurity/jobs/5290880008 |
-| Snorkel AI | Software Engineer — Security | NYC / SF (Hybrid) | 220,000 – 300,000 | https://job-boards.greenhouse.io/snorkelai/jobs/6148995004 |
-| Ridgeline | Staff Security Engineer - AI Security & Platforms | San Ramon / Reno (Hybrid) | 205,000 – 256,000 | https://job-boards.greenhouse.io/ridgeline/jobs/7814814003 |
-| GuidePoint Security | AI Security Engineer - Mid-Atlantic | Remote Mid-Atlantic | undisclosed | https://job-boards.greenhouse.io/guidepointsecurity/jobs/6030474004 |
-| SmartRent | Application Security Engineer | Phoenix, AZ (Remote OK) | undisclosed | https://job-boards.greenhouse.io/smartrent/jobs/6151079004 |
-| Aimpoint Digital | Lead AI Security Architect | Atlanta, GA (Remote) | undisclosed | https://aimpoint-digital.breezy.hr/p/86c221c3a8a3-lead-ai-security-architect-2026-us |
-| Postman | Principal Offensive Security Engineer | San Francisco, CA | 275,000 – 300,000 | https://job-boards.greenhouse.io/postman/jobs/7721349003 |
-| Postman | AI Engineer Internship (Summer 2026) | Berkeley / SF | undisclosed | https://job-boards.greenhouse.io/postman/jobs/7823417003 |
-| Ethos Life | Principal Security Engineer | Bangalore, India | undisclosed | https://job-boards.greenhouse.io/ethoslife/jobs/8570932002 |
-| The Quality Group | AI Security Engineer (gn) | Germany (Remote) | undisclosed | https://job-boards.greenhouse.io/thequalitygroupgmbh2/jobs/4890993101 |
-| AlphaSense | AI Security Analyst | Remote - India | undisclosed | https://job-boards.greenhouse.io/alphasense/jobs/8634067002 |
-| Spring Health | Staff AI Security Engineer | Seattle, WA (Hybrid) | 208,000 – 251,022 | https://job-boards.greenhouse.io/springhealth66/jobs/4702460005 |
-| Scale AI | Security Engineer, Infrastructure | NYC / SF / Seattle / DC | 237,600 – 297,000 | https://job-boards.greenhouse.io/scaleai/jobs/4646888005 |
-| Zscaler | Senior Software Engineer - AI Security (Network/Rust) | San Jose / Bellevue | 132,000 – 165,000 | https://job-boards.greenhouse.io/zscaler/jobs/5146136007 |
-| Glean | Application Security Engineer | Remote USA | 185,000 – 260,000 | https://job-boards.greenhouse.io/gleanwork/jobs/4728513005 |
-| Jobgether (anon client) | AI Governance Security Engineer | Remote (posted 2026-07-26) | undisclosed | https://jobs.lever.co/jobgether/3fc6bbff-61c4-43f6-bd26-627efc6bf5cf |
-| Greenhouse | Senior Product Security Engineer (AI/ML) | Remote USA | undisclosed | https://job-boards.greenhouse.io/greenhouse/jobs/7538639 |
+| Zscaler | Principal AI Security Specialist - Federal | McLean, VA / Remote DC | 176,000 – 251,000 | https://job-boards.greenhouse.io/zscaler/jobs/5174765007 |
+| Rithum | Staff Information Security Engineer - AI First | US Remote | 170,000 – 220,000 | https://job-boards.greenhouse.io/rithum/jobs/8016565 |
+| Cloudflare | AI Security Research & Red Team Engineer | Austin / NYC (Hybrid) | 166,000 – 208,000 | https://job-boards.greenhouse.io/cloudflare/jobs/8097321 |
+| Samsara | Senior AI Security Engineer | US Remote | 158,000 – 239,000 | https://zapply.jobs/jobs/acf85a0c-d821-4d56-9491-d0d66b280c84/ |
+| GitLab | Senior Security Engineer - Enterprise AI Security | US multi-location / Remote | 124,000 – 240,000 | https://builtin.com/job/senior-security-engineer-enterprise-ai-security/7291335 |
+| Mastercard | Senior AI Security Engineer | O'Fallon, MO (Hybrid) | 115,000 – 184,000 | https://builtin.com/job/senior-ai-security-engineer/7326238 |
+| Zscaler | Senior Software Engineer - AI Security (Network/Rust) | San Jose / Bellevue (Hybrid) | undisclosed | https://job-boards.greenhouse.io/zscaler/jobs/5146136007 |
+| Zscaler | Principal AI Security Specialist | Tokyo, Japan | undisclosed | https://job-boards.greenhouse.io/zscaler/jobs/5174751007 |
+| Snorkel AI | Software Engineer — Security | New York, NY | undisclosed | https://zapply.jobs/jobs/d7406c08-446b-45f1-833c-4de4c0d97a45/ |
+| DoorDash | Staff Security Engineer, Proactive Security - AI | US Remote | undisclosed | https://zapply.jobs/jobs/fae02356-da8a-4a00-bf06-974510262987/ |
+| Aimpoint Digital | Lead AI Security Architect 2026 | Atlanta / Remote US | undisclosed | https://aimpoint-digital.breezy.hr/p/86c221c3a8a3-lead-ai-security-architect-2026-us |
+| Atlas HXM | Senior Security Engineer, AI & DevSecOps | Canada (onsite) | undisclosed | https://www.goodvibecode.com/jobs/senior-security-engineer-ai-devsecops-atlas-hxm-995963 |
+| GuidePoint Security | AI Security Engineer - Mid-Atlantic | Remote (VA/MD/PA/NC/DE/NJ/DC) | undisclosed | https://job-boards.greenhouse.io/guidepointsecurity/jobs/6030474004 |
+| Air | Senior AI Engineer, Security Infrastructure | Arlington, VA / Pittsburgh, PA / Remote | undisclosed | https://job-boards.greenhouse.io/air/jobs/4394418009 |
+| 66degrees | Security Operations AI Engineer (Contract) | US Remote | undisclosed | https://job-boards.greenhouse.io/66degrees/jobs/6206846004 |
+| Xerox | Staff Security Engineer - Cloud & AI Security | India (Remote) | undisclosed | https://xerox.avature.net/en_US/careers/JobDetail?jobId=47814 |
+| Appier | Senior AI Security Engineer | Taipei, Taiwan | undisclosed | https://job-boards.greenhouse.io/appier/jobs/7949831 |
 
 ## Authoritative references
 
-The full list of frameworks, standards, and open-source tools that ground this packet is in [`.aicg/job-requirements.json`](.aicg/job-requirements.json) `authoritative_references[]`. New this cycle: `ref-owasp-agentic-top-10` (OWASP Agentic AI Top 10 — cited by name in Backblaze), `ref-openssf-mlsecops` (OpenSSF MLSecOps Whitepaper — referenced by 2026 vendor-consolidation coverage), `ref-garak` and `ref-pyrit` (LLM red-team automation harnesses now the de facto pair alongside UK AISI Inspect). All new references are woven inside existing modules; none warrant a new module.
+The full list of frameworks, standards, and open-source tools that ground this packet is in [`.aicg/job-requirements.json`](.aicg/job-requirements.json) `authoritative_references[]`. No new references added this cycle — the four picked up in the 2026-09 cycle (`ref-owasp-agentic-top-10`, `ref-openssf-mlsecops`, `ref-garak`, `ref-pyrit`) remain cited and will be woven into existing module lecture text on the next content-refresh cycle. OWASP Agentic AI Top 10 is now cited by name in more postings this cycle (GuidePoint, Databricks, Air, Rithum, in addition to prior-cycle Backblaze).
 
 Top-tier sources include:
 
@@ -202,12 +212,15 @@ Top-tier sources include:
 
 ## Curriculum-plan delta this cycle
 
-**No additions.** See [`.aicg/curriculum-plan-delta.json`](.aicg/curriculum-plan-delta.json). Every strongly-cited theme is already owned by an existing module; every weakly-cited emerging theme (MCP, AI-assisted-developer-tools, shadow AI, agentic-workflow anomaly detection) either fails the ≥ 0.30 frequency bar or is already covered incrementally by an existing `mod-107` or `mod-111` exercise. New authoritative references (`ref-owasp-agentic-top-10`, `ref-garak`, `ref-pyrit`, `ref-openssf-mlsecops`) are added to `authoritative_references[]` and will be woven into existing module lecture text on the next content-refresh cycle — that is a content edit, not a curriculum-plan-delta.
+**No additions.** See [`.aicg/curriculum-plan-delta.json`](.aicg/curriculum-plan-delta.json). Every strongly-cited theme is already owned by an existing module. MCP-server governance crossed both numeric thresholds for the first time this cycle but is not promoted because req-07's theme text explicitly lists MCP as in-scope and mod-107 lessons 03–04 already cover it (11 MCP-adjacent references in lesson 03 alone). The three other emerging themes (AI-assisted-dev-tool governance, agentic-workflow anomaly detection, shadow-AI detection) remain below the 0.30 threshold. Deepening mod-107 MCP coverage (tool-registry admission control, tool-poisoning threat model, tool-call provenance logging) is scheduled as a content-refresh action in the next cycle — content edit, not curriculum-plan-delta.
 
 ## Next research cycle checklist
 
-1. Re-sample ≥ 25 postings across the same five equivalent titles; watch for `MLSecOps Engineer` employer branding gaining traction (still absent as of 2026-09).
-2. Track the four below-threshold emerging themes for movement: MCP-server governance, AI-assisted-developer-tool governance, shadow-AI enforcement, agentic-workflow anomaly detection. Promote to `mod-107` / `mod-111` exercise if any clears ≥ 3 postings AND ≥ 0.30 frequency.
-3. Watch the vendor-consolidation wave (Palo Alto/Protect AI, Cisco/Robust Intelligence, F5/CalypsoAI) for impact on req-05 (ML supply-chain security) frequency — 0.19 this cycle, expected to rise.
-4. Re-verify salary tier structure. If Principal/Staff+ tier ceiling moves > 20% year-over-year, add a delta note.
-5. Refresh this file — replace every posting URL with the newest active listing per employer where possible.
+1. Re-sample ≥ 25 postings across the same five equivalent titles; watch for `MLSecOps Engineer` employer branding gaining traction (still absent for a second cycle).
+2. Watch **AI-assisted-developer-tool governance** (now at 0.24) for crossing 0.30 — expected within 1–2 cycles.
+3. Watch **shadow-AI detection and enforcement** (now at 0.17) — the Zscaler / Ripple vendor framing suggests this will keep rising.
+4. Watch for **confidential computing / TEEs** to appear by name — still at 0/29 but trade press is pushing it hard; could jump suddenly.
+5. Watch for **EU AI Act Article 55 systemic-risk obligations named explicitly** — August 2026 is the operational start date for GPAI obligations, so JDs may start citing Article 55 by number as deployments mature.
+6. Reassess **req-12 (cross-functional leadership)** and **req-13 (lineage security)** with a wider Principal / Staff+ sample slice to confirm the 2026-10 drops were sample-composition artefacts and not real market movement.
+7. Verify salary tier structure. If Principal / Staff+ tier median moves > 10% year-over-year, add a delta note.
+8. Refresh this file — replace every posting URL with the newest active listing per employer where possible.
