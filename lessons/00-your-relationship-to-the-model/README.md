@@ -12,10 +12,11 @@ You **govern and assure** the model: you decide whether a use is acceptable and 
 
 To you the model is a risk to be understood and managed: to people, to the organization, and to compliance. You don't usually build or run it. You set the rules it operates under, test it adversarially, and hold the evidence that it behaves as claimed.
 
-## The five relationships
+## The six relationships
 
 | Org | Relationship to the model |
 |-----|---------------------------|
+| [AI Workforce](https://github.com/ai-workforce-curriculum) | You **work alongside** the model: you direct it, check its output, and redesign your own work around it. |
 | [AI Startup](https://github.com/ai-startup-curriculum) | You **build a company around** the model: you decide what it's for and who pays for it. |
 | [AI Governance](https://github.com/ai-governance-curriculum) *(you are here)* | You **govern and assure** the model: you decide whether a use is acceptable and prove it stays that way. |
 | [AI Engineering](https://github.com/ai-engineering-curriculum) | You **build with** the model: you turn it into products and agents people use. |
@@ -38,6 +39,7 @@ Each row is a sibling org: what you hand them, what they hand you, and the role 
 
 | Org | You hand them | They hand you | Your nearest counterpart |
 |-----|---------------|---------------|--------------------------|
+| AI Workforce | Clear rules on what may be shared with which tools, and which uses need review, written so people can follow them | How AI is actually being used on the ground, including the shadow uses policy hasn't caught up with | [AI-Augmented Product Manager](https://github.com/ai-workforce-curriculum/ai-augmented-product-manager-learning) |
 | AI Startup | A defensible position for customers, regulators, and investors, and early warning on uses that would sink the company | The company's risk appetite, target markets, and customer commitments that set the compliance bar | [Startup Operations & Governance](https://github.com/ai-startup-curriculum/startup-operations-governance-curriculum) |
 | AI Engineering | Risk tiers, guardrail requirements, and red-team findings to fix before (and after) launch | System descriptions, eval results, and guardrail designs for each AI feature, plus incident reports when something goes wrong | [Forward Deployed AI Engineer](https://github.com/ai-engineering-curriculum/forward-deployed-engineer-learning) |
 | ML Engineering | Data-use rules, documentation standards, and the risk-based evaluation bar a model must clear | Data provenance, model cards, training-data documentation, and evaluation results they can audit | [Training Pipeline Engineer](https://github.com/ml-engineering-curriculum/training-pipeline-engineer-learning) |
@@ -49,15 +51,16 @@ Each row is a sibling org: what you hand them, what they hand you, and the role 
 - **Alongside it (same level):** [AI Evaluation Engineer](https://github.com/ai-governance-curriculum/ai-evaluation-engineer-learning)
 - **After this role:** [Agentic Safety & Red-Team Engineer](https://github.com/ai-governance-curriculum/agentic-safety-engineer-learning)
 
-## Scenario: One model upgrade, five orgs
+## Scenario: One model upgrade, six orgs
 
-Your vendor ships a new model version and deprecates the one in production in 90 days. Nobody owns this end to end. Here is how the work splits:
+Your vendor ships a new model version and deprecates the one in production in 90 days. Nobody owns this end to end. Here is how the work splits across the six orgs:
 
-1. **AI Startup:** Decides whether the upgrade is worth it now: cost, customer commitments, roadmap. Tells customers what changes and when.
-2. **AI Governance:** **Re-runs risk and safety evaluations on the new version, updates the model inventory and documentation, and signs off (or blocks) the release.** ← your part
-3. **AI Engineering:** Re-runs product evals, re-tunes prompts and tool definitions that regressed, and rolls the new model out behind a flag with a rollback path.
-4. **ML Engineering:** Re-validates any fine-tunes, distillations, or in-house models that depended on the old version, and benchmarks the new one on the team's own data.
-5. **AI Infrastructure:** Stands up serving for the new version, capacity-plans GPUs or rate limits, shifts traffic gradually, and watches latency, error, and cost dashboards.
+1. **AI Workforce:** Re-checks the everyday workflows built on the old model (prompts, review habits, team playbooks), spots where output quality shifted, and updates the guidance people actually follow.
+2. **AI Startup:** Decides whether the upgrade is worth it now: cost, customer commitments, roadmap. Tells customers what changes and when.
+3. **AI Governance:** **Re-runs risk and safety evaluations on the new version, updates the model inventory and documentation, and signs off (or blocks) the release.** ← your part
+4. **AI Engineering:** Re-runs product evals, re-tunes prompts and tool definitions that regressed, and rolls the new model out behind a flag with a rollback path.
+5. **ML Engineering:** Re-validates any fine-tunes, distillations, or in-house models that depended on the old version, and benchmarks the new one on the team's own data.
+6. **AI Infrastructure:** Stands up serving for the new version, capacity-plans GPUs or rate limits, shifts traffic gradually, and watches latency, error, and cost dashboards.
 
 If any one of these is skipped, the upgrade fails in a way the others can't see from where they sit. Knowing which line is yours, and who owns the lines next to it, is the point of this module.
 
