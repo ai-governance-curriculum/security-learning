@@ -45,7 +45,7 @@ Each row is a sibling org: what you hand them, what they hand you, and the role 
 
 ## Your ladder
 
-- **Before this role:** [AI Risk Engineer](https://github.com/ai-governance-curriculum/ai-risk-engineer-learning)
+- **Before this role:** [AI Privacy Engineer](https://github.com/ai-governance-curriculum/ai-privacy-engineer-learning)
 - **Alongside it (same level):** [AI Evaluation Engineer](https://github.com/ai-governance-curriculum/ai-evaluation-engineer-learning)
 - **After this role:** [Agentic Safety & Red-Team Engineer](https://github.com/ai-governance-curriculum/agentic-safety-engineer-learning)
 
